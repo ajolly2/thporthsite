@@ -629,203 +629,213 @@
         Social
       </div>
       <div id="social-Home" class="content-section" style="display: block;">
-        <rssapp-feed id="_W0ZzValCUhv9Q88Y"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-      <div id="social-MLB" class="content-section" style="display: none;">
-        <rssapp-feed id="_wcNmb7Pr9SpM8BQ4"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-      <div id="social-NBA" class="content-section" style="display: none;">
-        <rssapp-feed id="5RV6ZHeyJhWxORz5"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-      <div id="social-NFL" class="content-section" style="display: none;">
-        Placeholder text
-      </div>
-      <div id="social-NHL" class="content-section" style="display: none;">
-        <rssapp-feed id="_NHLSocialFeed"></rssapp-feed>
-        <rssapp-feed id="pNuN9vyuvzYgmCmy"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-      <div id="social-UEFAChampionsLeague" class="content-section" style="display: none;">
-        <rssapp-feed id="_UEFASocialFeed"></rssapp-feed>
-        <rssapp-feed id="fJDD9RMqob2qCjwA"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-      <div id="social-PremierLeague" class="content-section" style="display: none;">
-        <rssapp-feed id="_PremierSocialFeed"></rssapp-feed>
-        <rssapp-feed id="neXmnwbubK21ZWYF"></rssapp-feed>
-        <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-      </div>
-    </div>
+  <rssapp-feed id="_W0ZzValCUhv9Q88Y"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-MLB" class="content-section" style="display: none;">
+  <rssapp-feed id="_wcNmb7Pr9SpM8BQ4"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-NBA" class="content-section" style="display: none;">
+  <rssapp-feed id="5RV6ZHeyJhWxORz5"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-NFL" class="content-section" style="display: none;">
+  <rssapp-feed id="INJ6Bk4bDkbmuBbD"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-NHL" class="content-section" style="display: none;">
+  <rssapp-feed id="_NHLSocialFeed"></rssapp-feed>
+  <rssapp-feed id="pNuN9vyuvzYgmCmy"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-UEFAChampionsLeague" class="content-section" style="display: none;">
+  <rssapp-feed id="_UEFASocialFeed"></rssapp-feed>
+  <rssapp-feed id="fJDD9RMqob2qCjwA"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-PremierLeague" class="content-section" style="display: none;">
+  <rssapp-feed id="_PremierSocialFeed"></rssapp-feed>
+  <rssapp-feed id="neXmnwbubK21ZWYF"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-MLS" class="content-section" style="display: none;">
+  <rssapp-feed id="9EAOd7JHtY1IRVUP"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
+<div id="social-SerieA" class="content-section" style="display: none;">
+  <rssapp-feed id="zbTyEkE5gjqLEv3s"></rssapp-feed>
+  <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+</div>
   </div>
-  
-  <!-- Combined JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Helper function to fetch and render an XML feed
-      function fetchFeed(containerSelector, feedUrl) {
-        const container = document.querySelector(containerSelector);
-        if (!container) return;
-        fetch(feedUrl)
-          .then(res => res.text())
-          .then(str => {
-            const parser = new DOMParser();
-            const xml = parser.parseFromString(str, "application/xml");
-            const items = Array.from(xml.querySelectorAll('item'));
-            if (items.length > 0) {
-              const ul = document.createElement("ul");
-              items.forEach(item => {
-                const title = item.querySelector('title')?.textContent || 'No title';
-                const link = item.querySelector('link')?.textContent || '#';
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = link;
-                a.target = "_blank";
-                a.textContent = title;
-                li.appendChild(a);
-                ul.appendChild(li);
-              });
-              container.innerHTML = "";
-              container.appendChild(ul);
-            } else {
-              container.innerHTML = "<p>No items found.</p>";
-            }
-          })
-          .catch(error => {
-            console.error("Error loading feed:", error);
-            container.innerHTML = "<p>Error loading feed.</p>";
-          });
-      }
-      
-      // Fetch feeds for Home panel using feedMap
-      const feedMap = {
-        ESPN: 'https://www.espn.com/espn/rss/news',
-        CBS: 'https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml',
-        FOX: 'https://rss.app/feeds/KzC1hdnt93oattSD.xml',
-        Yahoo: 'https://rss.app/feeds/3BSRBZ6GJrUbB5PC.xml'
-      };
-      Object.entries(feedMap).forEach(([key, url]) => {
-        fetchFeed(`#feed-${key} .feed-content`, url);
-      });
-      
-      // Fetch custom feeds for other sections
-      fetchFeed('#feed-_6gzCeS4YQ4h2adTs .feed-content', 'https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml'); // MLB
-      fetchFeed('#feed-_ja3fYEA7yigAcmAk .feed-content', 'https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml'); // NBA
-      fetchFeed('#feed-_iiyR3EPoC5QXMnqt .feed-content', 'https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml'); // NFL
-      fetchFeed('#feed-_pBOHW7eyjbGkaiZq .feed-content', 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml'); // MLS
-      fetchFeed('#feed-PremierLeague .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // Premier League
-      fetchFeed('#feed-UEFAChampionsLeague .feed-content', 'https://rss.app/feeds/_BnF56qFhfPBsVZ6I.xml'); // UEFA Champions League
-      fetchFeed('#feed-SerieA .feed-content', 'https://rss.app/feeds/_IEjWrVaKRW3QNEkB.xml'); // Serie A
-      fetchFeed('#feed-Bundesliga .feed-content', 'https://rss.app/feeds/_OFOWQNsn38MFTtLv.xml'); // Bundesliga
-      fetchFeed('#feed-LaLiga .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // LaLiga
-      fetchFeed('#feed-_5c3ZcfSrwvdwdG2Z .feed-content', 'https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml'); // NHL
-      
-      // Existing menu functionality
-      let selectedSection = 'Home';
-      document.querySelectorAll('.menu-filter').forEach(filter => {
-        filter.addEventListener('click', () => {
-          document.getElementById('menuSearch').value = '';
-          ['123', 'az', 'group'].forEach(type => {
-            document.querySelectorAll('#menuList-' + type + ' li').forEach(li => {
-              li.style.display = '';
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Helper function to fetch and render an XML feed
+    function fetchFeed(containerSelector, feedUrl) {
+      const container = document.querySelector(containerSelector);
+      if (!container) return;
+      fetch(feedUrl)
+        .then(res => res.text())
+        .then(str => {
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(str, "application/xml");
+          const items = Array.from(xml.querySelectorAll('item'));
+          if (items.length > 0) {
+            const ul = document.createElement("ul");
+            items.forEach(item => {
+              const title = item.querySelector('title')?.textContent || 'No title';
+              const link = item.querySelector('link')?.textContent || '#';
+              const li = document.createElement("li");
+              const a = document.createElement("a");
+              a.href = link;
+              a.target = "_blank";
+              a.textContent = title;
+              li.appendChild(a);
+              ul.appendChild(li);
             });
+            container.innerHTML = "";
+            container.appendChild(ul);
+          } else {
+            container.innerHTML = "<p>No items found.</p>";
+          }
+        })
+        .catch(error => {
+          console.error("Error loading feed:", error);
+          container.innerHTML = "<p>Error loading feed.</p>";
+        });
+    }
+    
+    // Fetch feeds for Home panel using feedMap
+    const feedMap = {
+      ESPN: 'https://www.espn.com/espn/rss/news',
+      CBS: 'https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml',
+      FOX: 'https://rss.app/feeds/KzC1hdnt93oattSD.xml',
+      Yahoo: 'https://rss.app/feeds/3BSRBZ6GJrUbB5PC.xml'
+    };
+    Object.entries(feedMap).forEach(([key, url]) => {
+      fetchFeed(`#feed-${key} .feed-content`, url);
+    });
+    
+    // Fetch custom feeds for other sections
+    fetchFeed('#feed-_6gzCeS4YQ4h2adTs .feed-content', 'https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml'); // MLB
+    fetchFeed('#feed-_ja3fYEA7yigAcmAk .feed-content', 'https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml'); // NBA
+    fetchFeed('#feed-_iiyR3EPoC5QXMnqt .feed-content', 'https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml'); // NFL
+    fetchFeed('#feed-_pBOHW7eyjbGkaiZq .feed-content', 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml'); // MLS
+    fetchFeed('#feed-PremierLeague .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // Premier League
+    fetchFeed('#feed-UEFAChampionsLeague .feed-content', 'https://rss.app/feeds/_BnF56qFhfPBsVZ6I.xml'); // UEFA Champions League
+    fetchFeed('#feed-SerieA .feed-content', 'https://rss.app/feeds/_IEjWrVaKRW3QNEkB.xml'); // Serie A
+    fetchFeed('#feed-Bundesliga .feed-content', 'https://rss.app/feeds/_OFOWQNsn38MFTtLv.xml'); // Bundesliga
+    fetchFeed('#feed-LaLiga .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // LaLiga
+    fetchFeed('#feed-_5c3ZcfSrwvdwdG2Z .feed-content', 'https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml'); // NHL
+    
+    // Existing menu functionality
+    let selectedSection = 'Home';
+    document.querySelectorAll('.menu-filter').forEach(filter => {
+      filter.addEventListener('click', () => {
+        document.getElementById('menuSearch').value = '';
+        ['123', 'az', 'group'].forEach(type => {
+          document.querySelectorAll('#menuList-' + type + ' li').forEach(li => {
+            li.style.display = '';
           });
-          document.querySelectorAll('.menu-filter').forEach(f => f.classList.remove('active'));
-          filter.classList.add('active');
-          const type = filter.dataset.filter;
-          document.getElementById('menuList-123').style.display = (type === '123') ? 'block' : 'none';
-          document.getElementById('menuList-az').style.display = (type === 'az') ? 'block' : 'none';
-          document.getElementById('menuList-group').style.display = (type === 'group') ? 'block' : 'none';
-          const newList = document.getElementById('menuList-' + type);
-          if (newList) {
-            newList.querySelectorAll('li[data-section]').forEach(li => {
-              li.classList.toggle('selected', li.dataset.section === selectedSection);
-            });
-          }
         });
-      });
-      
-      document.querySelectorAll('#menuList li').forEach(item => {
-        item.addEventListener('click', e => {
-          if (item.classList.contains('spacer-line') || item.classList.contains('soccer-more-toggle')) {
-            e.stopPropagation();
-            return;
-          }
-          e.stopPropagation();
-          if (item.dataset.section) {
-            selectedSection = item.dataset.section;
-          }
-          document.querySelectorAll('#menuList li[data-section]').forEach(li => li.classList.remove('selected'));
-          item.classList.add('selected');
-          const section = item.dataset.section;
-          document.querySelectorAll('.news .content-section').forEach(s => s.style.display = 'none');
-          document.querySelectorAll('.social .content-section').forEach(s => s.style.display = 'none');
-          const news = document.getElementById('news-' + section);
-          const social = document.getElementById('social-' + section);
-          if (news) {
-            news.style.display = 'block';
-            if (section === 'Home') {
-              document.getElementById('newsSubMenu').style.display = 'flex';
-              const container = document.querySelector('.news');
-              container.scrollTop = 0;
-              container.dispatchEvent(new Event('scroll'));
-            } else {
-              document.getElementById('newsSubMenu').style.display = 'none';
-            }
-          }
-          if (social) social.style.display = 'block';
-        });
-      });
-      
-      const feeds = ['feed-ESPN', 'feed-CBS', 'feed-FOX', 'feed-Yahoo'];
-      const newsPanel = document.querySelector('.news');
-      newsPanel.addEventListener('scroll', () => {
-        const top = newsPanel.getBoundingClientRect().top;
-        const offset = document.getElementById('newsSubMenu').offsetHeight + 50;
-        let active = 0;
-        for (let i = 0; i < feeds.length; i++) {
-          const el = document.getElementById(feeds[i]);
-          if (!el) continue;
-          const h4 = el.querySelector('h4');
-          if (!h4) continue;
-          if (h4.getBoundingClientRect().top > top + offset) break;
-          active = i;
-        }
-        const feedName = feeds[active].replace('feed-', '').toLowerCase();
-        document.querySelectorAll('.news-menu-item').forEach(item => {
-          item.classList.toggle('active', item.dataset.feed.toLowerCase() === feedName);
-        });
-      });
-      
-      document.getElementById('menuSearch').addEventListener('keyup', function () {
-        const query = this.value.toLowerCase();
-        const activeFilterElem = document.querySelector('.menu-filter.active');
-        if (!activeFilterElem) return;
-        const activeFilter = activeFilterElem.dataset.filter;
-        const activeList = document.getElementById('menuList-' + activeFilter);
-        if (activeList) {
-          activeList.querySelectorAll('li').forEach(li => {
-            li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+        document.querySelectorAll('.menu-filter').forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+        const type = filter.dataset.filter;
+        document.getElementById('menuList-123').style.display = (type === '123') ? 'block' : 'none';
+        document.getElementById('menuList-az').style.display = (type === 'az') ? 'block' : 'none';
+        document.getElementById('menuList-group').style.display = (type === 'group') ? 'block' : 'none';
+        const newList = document.getElementById('menuList-' + type);
+        if (newList) {
+          newList.querySelectorAll('li[data-section]').forEach(li => {
+            li.classList.toggle('selected', li.dataset.section === selectedSection);
           });
         }
-      });
-      
-      window.toggleSoccerMore = function() {
-        const section = document.getElementById('soccer-more');
-        const toggle = document.querySelector('.soccer-more-toggle');
-        const expanded = section.style.display === 'block';
-        section.style.display = expanded ? 'none' : 'block';
-        toggle.textContent = expanded ? 'More…' : 'Less…';
-      };
-      
-      // Force all links in RSS feeds to open in a new tab
-      document.querySelectorAll(".rss-feed a").forEach(link => {
-        link.setAttribute("target", "_blank");
       });
     });
-  </script>
+    
+    document.querySelectorAll('#menuList li').forEach(item => {
+      item.addEventListener('click', e => {
+        if (item.classList.contains('spacer-line') || item.classList.contains('soccer-more-toggle')) {
+          e.stopPropagation();
+          return;
+        }
+        e.stopPropagation();
+        if (item.dataset.section) {
+          selectedSection = item.dataset.section;
+        }
+        document.querySelectorAll('#menuList li[data-section]').forEach(li => li.classList.remove('selected'));
+        item.classList.add('selected');
+        const section = item.dataset.section;
+        document.querySelectorAll('.news .content-section').forEach(s => s.style.display = 'none');
+        document.querySelectorAll('.social .content-section').forEach(s => s.style.display = 'none');
+        const news = document.getElementById('news-' + section);
+        const social = document.getElementById('social-' + section);
+        if (news) {
+          news.style.display = 'block';
+          if (section === 'Home') {
+            document.getElementById('newsSubMenu').style.display = 'flex';
+            const container = document.querySelector('.news');
+            container.scrollTop = 0;
+            container.dispatchEvent(new Event('scroll'));
+          } else {
+            document.getElementById('newsSubMenu').style.display = 'none';
+          }
+        }
+        if (social) social.style.display = 'block';
+      });
+    });
+    
+    const feeds = ['feed-ESPN', 'feed-CBS', 'feed-FOX', 'feed-Yahoo'];
+    const newsPanel = document.querySelector('.news');
+    newsPanel.addEventListener('scroll', () => {
+      const top = newsPanel.getBoundingClientRect().top;
+      const offset = document.getElementById('newsSubMenu').offsetHeight + 50;
+      let active = 0;
+      for (let i = 0; i < feeds.length; i++) {
+        const el = document.getElementById(feeds[i]);
+        if (!el) continue;
+        const h4 = el.querySelector('h4');
+        if (!h4) continue;
+        if (h4.getBoundingClientRect().top > top + offset) break;
+        active = i;
+      }
+      const feedName = feeds[active].replace('feed-', '').toLowerCase();
+      document.querySelectorAll('.news-menu-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.feed.toLowerCase() === feedName);
+      });
+    });
+    
+    document.getElementById('menuSearch').addEventListener('keyup', function () {
+      const query = this.value.toLowerCase();
+      const activeFilterElem = document.querySelector('.menu-filter.active');
+      if (!activeFilterElem) return;
+      const activeFilter = activeFilterElem.dataset.filter;
+      const activeList = document.getElementById('menuList-' + activeFilter);
+      if (activeList) {
+        activeList.querySelectorAll('li').forEach(li => {
+          li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+        });
+      }
+    });
+    
+    window.toggleSoccerMore = function() {
+      const section = document.getElementById('soccer-more');
+      const toggle = document.querySelector('.soccer-more-toggle');
+      const expanded = section.style.display === 'block';
+      section.style.display = expanded ? 'none' : 'block';
+      toggle.textContent = expanded ? 'More…' : 'Less…';
+    };
+    
+    // Force all links in RSS feeds to open in a new tab
+    document.querySelectorAll(".rss-feed a").forEach(link => {
+      link.setAttribute("target", "_blank");
+    });
+  });
+</script>
+
+
 </body>
 </html>
 
