@@ -605,17 +605,36 @@
           <div class="feed-content">Loading Premier League feed...</div>
         </div>
       </div>
-      <!-- Other sections remain as placeholders -->
+      <!-- UEFA Champions League News Section with custom XML fetch -->
+      <div id="news-UEFAChampionsLeague" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-UEFAChampionsLeague">
+          <h4>UEFA Champions League</h4>
+          <div class="feed-content">Loading UEFA Champions League feed...</div>
+        </div>
+      </div>
+      <!-- Serie A News Section with custom XML fetch -->
+      <div id="news-SerieA" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-SerieA">
+          <h4>Serie A</h4>
+          <div class="feed-content">Loading Serie A feed...</div>
+        </div>
+      </div>
+      <!-- Bundesliga News Section with custom XML fetch -->
+      <div id="news-Bundesliga" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-Bundesliga">
+          <h4>Bundesliga</h4>
+          <div class="feed-content">Loading Bundesliga feed...</div>
+        </div>
+      </div>
+      <!-- LaLiga News Section with custom XML fetch -->
+      <div id="news-LaLiga" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-LaLiga">
+          <h4>LaLiga</h4>
+          <div class="feed-content">Loading LaLiga feed...</div>
+        </div>
+      </div>
+      <!-- Other news sections remain as placeholders -->
       <div id="news-Soccer" class="content-section" style="display: none;">Placeholder content for Soccer (News)</div>
-      <div id="news-UEFAChampionsLeague" class="content-section" style="display: none;">Placeholder content for UEFA Champions League (News)</div>
-      <div id="news-MLS" class="content-section" style="display: none;">Placeholder content for MLS (News)</div>
-      <div id="news-LaLiga" class="content-section" style="display: none;">Placeholder content for LaLiga (News)</div>
-      <div id="news-SerieA" class="content-section" style="display: none;">Placeholder content for Serie A (News)</div>
-      <div id="news-FACup" class="content-section" style="display: none;">Placeholder content for FA Cup (News)</div>
-      <div id="news-LigaMX" class="content-section" style="display: none;">Placeholder content for Liga MX (News)</div>
-      <div id="news-NWSL" class="content-section" style="display: none;">Placeholder content for NWSL (News)</div>
-      <div id="news-Ligue1" class="content-section" style="display: none;">Placeholder content for Ligue 1 (News)</div>
-      <div id="news-UEFAEuropaLeague" class="content-section" style="display: none;">Placeholder content for UEFA Europa League (News)</div>
       <div id="news-UEFAConferenceLeague" class="content-section" style="display: none;">Placeholder content for UEFA Conference League (News)</div>
       <div id="news-FormulaOne" class="content-section" style="display: none;">Placeholder content for Formula One (News)</div>
       <div id="news-NCAAF" class="content-section" style="display: none;">Placeholder content for NCAAF (News)</div>
@@ -635,7 +654,6 @@
       <div id="news-MotoGP" class="content-section" style="display: none;">Placeholder content for MotoGP (News)</div>
       <div id="news-LPGATour" class="content-section" style="display: none;">Placeholder content for LPGA Tour (News)</div>
       <div id="news-TrackAndField" class="content-section" style="display: none;">Placeholder content for Track &amp; Field (News)</div>
-      <!-- (Other news sections omitted for exactness as provided above) -->
     </div>
     
     <!-- DIVIDER BETWEEN NEWS PANEL AND SOCIAL PANEL -->
@@ -734,7 +752,10 @@
       fetchFeed('#feed-_iiyR3EPoC5QXMnqt .feed-content', 'https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml'); // NFL
       fetchFeed('#feed-_pBOHW7eyjbGkaiZq .feed-content', 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml'); // MLS
       fetchFeed('#feed-PremierLeague .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // Premier League
-      fetchFeed('#feed-_5c3ZcfSrwvdwdG2Z .feed-content', 'https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml'); // NHL
+      fetchFeed('#feed-UEFAChampionsLeague .feed-content', 'https://rss.app/feeds/_BnF56qFhfPBsVZ6I.xml'); // UEFA Champions League
+      fetchFeed('#feed-SerieA .feed-content', 'https://rss.app/feeds/_IEjWrVaKRW3QNEkB.xml'); // Serie A
+      fetchFeed('#feed-Bundesliga .feed-content', 'https://rss.app/feeds/_OFOWQNsn38MFTtLv.xml'); // Bundesliga
+      fetchFeed('#feed-LaLiga .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // LaLiga
       
       // Existing menu functionality
       let selectedSection = 'Home';
