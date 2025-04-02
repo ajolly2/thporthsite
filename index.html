@@ -673,9 +673,44 @@
     </div>
   </div>
   
-  <!-- Script to fetch Home panel RSS feeds -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Helper function to fetch and render an XML feed
+      function fetchFeed(containerSelector, feedUrl) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+        fetch(feedUrl)
+          .then(res => res.text())
+          .then(str => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(str, "application/xml");
+            const items = Array.from(xml.querySelectorAll('item'));
+            if (items.length > 0) {
+              const ul = document.createElement("ul");
+              items.forEach(item => {
+                const title = item.querySelector('title')?.textContent || 'No title';
+                const link = item.querySelector('link')?.textContent || '#';
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = link;
+                a.target = "_blank";
+                a.textContent = title;
+                li.appendChild(a);
+                ul.appendChild(li);
+              });
+              container.innerHTML = "";
+              container.appendChild(ul);
+            } else {
+              container.innerHTML = "<p>No items found.</p>";
+            }
+          })
+          .catch(error => {
+            console.error("Error loading feed:", error);
+            container.innerHTML = "<p>Error loading feed.</p>";
+          });
+      }
+      
+      // Fetch feeds for Home panel
       const feedMap = {
         ESPN: 'https://www.espn.com/espn/rss/news',
         CBS: 'https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml',
@@ -683,168 +718,18 @@
         Yahoo: 'https://rss.app/feeds/3BSRBZ6GJrUbB5PC.xml'
       };
       Object.entries(feedMap).forEach(([key, url]) => {
-        const container = document.querySelector(`#feed-${key} .feed-content`);
-        fetch(url)
-          .then(res => res.text())
-          .then(str => {
-            const xml = new DOMParser().parseFromString(str, 'application/xml');
-            const items = Array.from(xml.querySelectorAll('item'));
-            container.innerHTML = '<ul>' + items.map(item => {
-              const title = item.querySelector('title')?.textContent || 'No title';
-              const link = item.querySelector('link')?.textContent || '#';
-              return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-            }).join('') + '</ul>';
-            container.querySelectorAll('a').forEach(a => {
-              a.addEventListener('click', () => a.classList.add('clicked'));
-            });
-          })
-          .catch(() => {
-            container.innerHTML = '<p>Error loading feed.</p>';
-          });
+        fetchFeed(`#feed-${key} .feed-content`, url);
       });
-    });
-  </script>
-  
-  <!-- Script to fetch the new MLB RSS feed in the news-MLB section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const container = document.querySelector('#feed-_6gzCeS4YQ4h2adTs .feed-content');
-      fetch('https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml')
-        .then(res => res.text())
-        .then(str => {
-          const xml = new DOMParser().parseFromString(str, 'application/xml');
-          const items = Array.from(xml.querySelectorAll('item'));
-          container.innerHTML = '<ul>' + items.map(item => {
-            const title = item.querySelector('title')?.textContent || 'No title';
-            const link = item.querySelector('link')?.textContent || '#';
-            return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-          }).join('') + '</ul>';
-          container.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => a.classList.add('clicked'));
-          });
-        })
-        .catch(() => {
-          container.innerHTML = '<p>Error loading feed.</p>';
-        });
-    });
-  </script>
-  
-  <!-- Script to fetch the new NBA RSS feed in the news-NBA section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const containerNBA = document.querySelector('#feed-_ja3fYEA7yigAcmAk .feed-content');
-      fetch('https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml')
-        .then(res => res.text())
-        .then(str => {
-          const xml = new DOMParser().parseFromString(str, 'application/xml');
-          const items = Array.from(xml.querySelectorAll('item'));
-          containerNBA.innerHTML = '<ul>' + items.map(item => {
-            const title = item.querySelector('title')?.textContent || 'No title';
-            const link = item.querySelector('link')?.textContent || '#';
-            return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-          }).join('') + '</ul>';
-          containerNBA.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => a.classList.add('clicked'));
-          });
-        })
-        .catch(() => {
-          containerNBA.innerHTML = '<p>Error loading feed.</p>';
-        });
-    });
-  </script>
-  
-  <!-- Script to fetch the new NFL RSS feed in the news-NFL section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const containerNFL = document.querySelector('#feed-_iiyR3EPoC5QXMnqt .feed-content');
-      fetch('https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml')
-        .then(res => res.text())
-        .then(str => {
-          const xml = new DOMParser().parseFromString(str, 'application/xml');
-          const items = Array.from(xml.querySelectorAll('item'));
-          containerNFL.innerHTML = '<ul>' + items.map(item => {
-            const title = item.querySelector('title')?.textContent || 'No title';
-            const link = item.querySelector('link')?.textContent || '#';
-            return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-          }).join('') + '</ul>';
-          containerNFL.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => a.classList.add('clicked'));
-          });
-        })
-        .catch(() => {
-          containerNFL.innerHTML = '<p>Error loading feed.</p>';
-        });
-    });
-  </script>
-  
-  <!-- Script to fetch the new MLS RSS feed in the news-MLS section -->
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const container = document.querySelector('#feed-_pBOHW7eyjbGkaiZq .feed-content');
-      const feedUrl = 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml';
-      fetch(feedUrl)
-        .then(response => response.text())
-        .then(data => {
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(data, "application/xml");
-          const items = Array.from(xml.querySelectorAll("item"));
-          if (items.length > 0) {
-            const ul = document.createElement("ul");
-            items.forEach(item => {
-              const title = item.querySelector("title")?.textContent || "No title";
-              const link = item.querySelector("link")?.textContent || "#";
-              const li = document.createElement("li");
-              const a = document.createElement("a");
-              a.href = link;
-              a.target = "_blank";
-              a.textContent = title;
-              li.appendChild(a);
-              ul.appendChild(li);
-            });
-            container.innerHTML = "";
-            container.appendChild(ul);
-          } else {
-            container.innerHTML = "<p>No items found.</p>";
-          }
-        })
-        .catch(error => {
-          console.error("Error loading feed:", error);
-          container.innerHTML = "<p>Error loading feed.</p>";
-        });
-    });
-  </script>
-  
-  <!-- Script to fetch the new Premier League RSS feed in the news-PremierLeague section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const containerPremierLeague = document.querySelector('#feed-PremierLeague .feed-content');
-      fetch('https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml')
-        .then(res => res.text())
-        .then(str => {
-          const xml = new DOMParser().parseFromString(str, 'application/xml');
-          const items = Array.from(xml.querySelectorAll('item'));
-          containerPremierLeague.innerHTML = '<ul>' + items.map(item => {
-            const title = item.querySelector('title')?.textContent || 'No title';
-            const link = item.querySelector('link')?.textContent || '#';
-            return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-          }).join('') + '</ul>';
-          containerPremierLeague.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => a.classList.add('clicked'));
-          });
-        })
-        .catch(() => {
-          containerPremierLeague.innerHTML = '<p>Error loading feed.</p>';
-        });
-    });
-  </script>
-  
-  <!-- Existing JavaScript for menu functionality and feed highlighting -->
-  <script>
-    // Global variable to store the currently selected section.
-    let selectedSection = 'Home';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Filter switching with search reset
+      
+      // Fetch custom feeds
+      fetchFeed('#feed-_6gzCeS4YQ4h2adTs .feed-content', 'https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml'); // MLB
+      fetchFeed('#feed-_ja3fYEA7yigAcmAk .feed-content', 'https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml'); // NBA
+      fetchFeed('#feed-_iiyR3EPoC5QXMnqt .feed-content', 'https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml'); // NFL
+      fetchFeed('#feed-_pBOHW7eyjbGkaiZq .feed-content', 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml'); // MLS
+      fetchFeed('#feed-PremierLeague .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // Premier League
+      
+      // Existing menu functionality
+      let selectedSection = 'Home';
       document.querySelectorAll('.menu-filter').forEach(filter => {
         filter.addEventListener('click', () => {
           document.getElementById('menuSearch').value = '';
@@ -859,7 +744,6 @@
           document.getElementById('menuList-123').style.display = (type === '123') ? 'block' : 'none';
           document.getElementById('menuList-az').style.display = (type === 'az') ? 'block' : 'none';
           document.getElementById('menuList-group').style.display = (type === 'group') ? 'block' : 'none';
-          
           const newList = document.getElementById('menuList-' + type);
           if (newList) {
             newList.querySelectorAll('li[data-section]').forEach(li => {
@@ -869,7 +753,6 @@
         });
       });
       
-      // Menu item click for all lists
       document.querySelectorAll('#menuList li').forEach(item => {
         item.addEventListener('click', e => {
           if (item.classList.contains('spacer-line') || item.classList.contains('soccer-more-toggle')) {
@@ -882,7 +765,6 @@
           }
           document.querySelectorAll('#menuList li[data-section]').forEach(li => li.classList.remove('selected'));
           item.classList.add('selected');
-          
           const section = item.dataset.section;
           document.querySelectorAll('.news .content-section').forEach(s => s.style.display = 'none');
           document.querySelectorAll('.social .content-section').forEach(s => s.style.display = 'none');
@@ -890,7 +772,6 @@
           const social = document.getElementById('social-' + section);
           if (news) {
             news.style.display = 'block';
-            // Only show the news submenu on Home.
             if (section === 'Home') {
               document.getElementById('newsSubMenu').style.display = 'flex';
               const container = document.querySelector('.news');
@@ -944,14 +825,9 @@
         section.style.display = expanded ? 'none' : 'block';
         toggle.textContent = expanded ? 'More…' : 'Less…';
       };
-    });
-  </script>
-  
-  <!-- Script to force all links in RSS feeds to open in a new tab -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var links = document.querySelectorAll(".rss-feed a");
-      links.forEach(function(link) {
+      
+      // Force all links in RSS feeds to open in a new tab
+      document.querySelectorAll(".rss-feed a").forEach(link => {
         link.setAttribute("target", "_blank");
       });
     });
