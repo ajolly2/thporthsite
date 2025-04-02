@@ -598,10 +598,10 @@
         </div>
       </div>
       <div id="news-MLS" class="content-section" style="display: none;">
-        <div class="rss-feed" id="feed-MLS">
-          <h4>Premier League</h4>
-          <div class="feed-content">Loading Premier League feed...</div>
-        </div>
+        <div id="news-MLS">
+    <div class="rss-feed" id="feed-_pBOHW7eyjbGkaiZq">
+      <div class="feed-content">Loading MLS feed...</div>
+    </div>
       </div>
       <div id="news-LaLiga" class="content-section" style="display: none;">Placeholder content for LaLiga (News)</div>
       <div id="news-SerieA" class="content-section" style="display: none;">Placeholder content for Serie A (News)</div>
@@ -778,25 +778,38 @@
   </script>
   
   <!-- Script to fetch the new MLS RSS feed in the news-MLS section -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const containerMLS = document.querySelector('#feed-MLS .feed-content');
-      fetch('https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml')
-        .then(res => res.text())
-        .then(str => {
-          const xml = new DOMParser().parseFromString(str, 'application/xml');
-          const items = Array.from(xml.querySelectorAll('item'));
-          containerMLS.innerHTML = '<ul>' + items.map(item => {
-            const title = item.querySelector('title')?.textContent || 'No title';
-            const link = item.querySelector('link')?.textContent || '#';
-            return `<li><a href="${link}" target="_blank">${title}</a></li>`;
-          }).join('') + '</ul>';
-          containerMLS.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => a.classList.add('clicked'));
-          });
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.querySelector('#feed-_pBOHW7eyjbGkaiZq .feed-content');
+      const feedUrl = 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml';
+      fetch(feedUrl)
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(data, "application/xml");
+          const items = Array.from(xml.querySelectorAll("item"));
+          if (items.length > 0) {
+            const ul = document.createElement("ul");
+            items.forEach(item => {
+              const title = item.querySelector("title")?.textContent || "No title";
+              const link = item.querySelector("link")?.textContent || "#";
+              const li = document.createElement("li");
+              const a = document.createElement("a");
+              a.href = link;
+              a.target = "_blank";
+              a.textContent = title;
+              li.appendChild(a);
+              ul.appendChild(li);
+            });
+            container.innerHTML = "";
+            container.appendChild(ul);
+          } else {
+            container.innerHTML = "<p>No items found.</p>";
+          }
         })
-        .catch(() => {
-          containerMLS.innerHTML = '<p>Error loading feed.</p>';
+        .catch(error => {
+          console.error("Error loading feed:", error);
+          container.innerHTML = "<p>Error loading feed.</p>";
         });
     });
   </script>
