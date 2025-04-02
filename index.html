@@ -344,11 +344,13 @@
           <li data-section="NCAABaseball">NCAA Baseball</li>
           <li data-section="NCAAMensHockey">NCAA Men’s Hockey</li>
           <li data-section="NCAASoftball">NCAA Softball</li>
+          <li data-section="NFL">NFL</li>
           <li data-section="NHL">NHL</li>
           <li data-section="NHRA">NHRA</li>
           <li data-section="Olympics">Olympics</li>
           <li data-section="PGAChampions">PGA Champions</li>
           <li data-section="PGATour">PGA Tour</li>
+          <li data-section="PremierLeague">Premier League</li>
           <li data-section="PremiershipRugby">Premiership Rugby</li>
           <li data-section="SaudiProLeague">Saudi Pro League</li>
           <li data-section="ScottishPremiership">Scottish Premiership</li>
@@ -595,7 +597,12 @@
           <div class="feed-content">Loading Premier League feed...</div>
         </div>
       </div>
-      <div id="news-MLS" class="content-section" style="display: none;">Placeholder content for MLS (News)</div>
+      <div id="news-MLS" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-MLS">
+          <h4>Premier League</h4>
+          <div class="feed-content">Loading Premier League feed...</div>
+        </div>
+      </div>
       <div id="news-LaLiga" class="content-section" style="display: none;">Placeholder content for LaLiga (News)</div>
       <div id="news-SerieA" class="content-section" style="display: none;">Placeholder content for Serie A (News)</div>
       <div id="news-FACup" class="content-section" style="display: none;">Placeholder content for FA Cup (News)</div>
@@ -773,7 +780,7 @@
   <!-- Script to fetch the new MLS RSS feed in the news-MLS section -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const containerMLS = document.querySelector('#feed-_pBOHW7eyjbGkaiZq .feed-content');
+      const containerMLS = document.querySelector('#feed-MLS .feed-content');
       fetch('https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml')
         .then(res => res.text())
         .then(str => {
