@@ -344,13 +344,10 @@
           <li data-section="NCAABaseball">NCAA Baseball</li>
           <li data-section="NCAAMensHockey">NCAA Men’s Hockey</li>
           <li data-section="NCAASoftball">NCAA Softball</li>
-          <li data-section="NFL">NFL</li>
-          <li data-section="NHL">NHL</li>
           <li data-section="NHRA">NHRA</li>
           <li data-section="Olympics">Olympics</li>
           <li data-section="PGAChampions">PGA Champions</li>
           <li data-section="PGATour">PGA Tour</li>
-          <li data-section="PremierLeague">Premier League</li>
           <li data-section="PremiershipRugby">Premiership Rugby</li>
           <li data-section="SaudiProLeague">Saudi Pro League</li>
           <li data-section="ScottishPremiership">Scottish Premiership</li>
@@ -569,40 +566,49 @@
       <!-- MLB News Section with new RSS feed -->
       <div id="news-MLB" class="content-section" style="display: none;">
         <div class="rss-feed" id="feed-_6gzCeS4YQ4h2adTs">
-          <div class="feed-content">Loading feed...</div>
+          <h4>MLB</h4>
+          <div class="feed-content">Loading MLB feed...</div>
         </div>
       </div>
       <!-- NBA News Section with new RSS feed (identical structure to MLB) -->
       <div id="news-NBA" class="content-section" style="display: none;">
         <div class="rss-feed" id="feed-_ja3fYEA7yigAcmAk">
-          <div class="feed-content">Loading feed...</div>
+          <h4>NBA</h4>
+          <div class="feed-content">Loading NBA feed...</div>
         </div>
       </div>
-      <!-- Other news sections as placeholders -->
-      <div id="news-NFL" class="content-section" style="display: none;">Placeholder content for NFL (News)</div>
+      <!-- NFL News Section with new RSS feed -->
+      <div id="news-NFL" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-_iiyR3EPoC5QXMnqt">
+          <h4>NFL</h4>
+          <div class="feed-content">Loading NFL feed...</div>
+        </div>
+      </div>
+      <!-- NHL News Section with new RSS feed -->
       <div id="news-NHL" class="content-section" style="display: none;">
         <div class="rss-feed" id="feed-_5c3ZcfSrwvdwdG2Z">
-          <div class="feed-content">
-            <rssapp-feed id="_5c3ZcfSrwvdwdG2Z"></rssapp-feed>
-            <script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
-          </div>
+          <h4>NHL</h4>
+          <div class="feed-content">Loading NHL feed...</div>
         </div>
       </div>
-      <div id="news-Soccer" class="content-section" style="display: none;">Placeholder content for Soccer (News)</div>
-      <div id="news-UEFAChampionsLeague" class="content-section" style="display: none;">Placeholder content for UEFA Champions League (News)</div>
-      <!-- Premier League News Section with the new RSS feed -->
+      <!-- MLS News Section with custom XML fetch -->
+      <div id="news-MLS" class="content-section" style="display: none;">
+        <div class="rss-feed" id="feed-_pBOHW7eyjbGkaiZq">
+          <h4>MLS</h4>
+          <div class="feed-content">Loading MLS feed...</div>
+        </div>
+      </div>
+      <!-- Premier League News Section with custom XML fetch -->
       <div id="news-PremierLeague" class="content-section" style="display: none;">
         <div class="rss-feed" id="feed-PremierLeague">
           <h4>Premier League</h4>
           <div class="feed-content">Loading Premier League feed...</div>
         </div>
       </div>
-      <div id="news-MLS" class="content-section" style="display: none;">
-        <div id="news-MLS">
-    <div class="rss-feed" id="feed-_pBOHW7eyjbGkaiZq">
-      <div class="feed-content">Loading MLS feed...</div>
-    </div>
-      </div>
+      <!-- Other sections remain as placeholders -->
+      <div id="news-Soccer" class="content-section" style="display: none;">Placeholder content for Soccer (News)</div>
+      <div id="news-UEFAChampionsLeague" class="content-section" style="display: none;">Placeholder content for UEFA Champions League (News)</div>
+      <div id="news-MLS" class="content-section" style="display: none;">Placeholder content for MLS (News)</div>
       <div id="news-LaLiga" class="content-section" style="display: none;">Placeholder content for LaLiga (News)</div>
       <div id="news-SerieA" class="content-section" style="display: none;">Placeholder content for Serie A (News)</div>
       <div id="news-FACup" class="content-section" style="display: none;">Placeholder content for FA Cup (News)</div>
@@ -629,7 +635,7 @@
       <div id="news-MotoGP" class="content-section" style="display: none;">Placeholder content for MotoGP (News)</div>
       <div id="news-LPGATour" class="content-section" style="display: none;">Placeholder content for LPGA Tour (News)</div>
       <div id="news-TrackAndField" class="content-section" style="display: none;">Placeholder content for Track &amp; Field (News)</div>
-      <!-- (Other news sections omitted for brevity) -->
+      <!-- (Other news sections omitted for exactness as provided above) -->
     </div>
     
     <!-- DIVIDER BETWEEN NEWS PANEL AND SOCIAL PANEL -->
@@ -673,6 +679,7 @@
     </div>
   </div>
   
+  <!-- Combined JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Helper function to fetch and render an XML feed
@@ -710,7 +717,7 @@
           });
       }
       
-      // Fetch feeds for Home panel
+      // Fetch feeds for Home panel using feedMap
       const feedMap = {
         ESPN: 'https://www.espn.com/espn/rss/news',
         CBS: 'https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml',
@@ -721,12 +728,13 @@
         fetchFeed(`#feed-${key} .feed-content`, url);
       });
       
-      // Fetch custom feeds
+      // Fetch custom feeds for other sections
       fetchFeed('#feed-_6gzCeS4YQ4h2adTs .feed-content', 'https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml'); // MLB
       fetchFeed('#feed-_ja3fYEA7yigAcmAk .feed-content', 'https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml'); // NBA
       fetchFeed('#feed-_iiyR3EPoC5QXMnqt .feed-content', 'https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml'); // NFL
       fetchFeed('#feed-_pBOHW7eyjbGkaiZq .feed-content', 'https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml'); // MLS
       fetchFeed('#feed-PremierLeague .feed-content', 'https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml'); // Premier League
+      fetchFeed('#feed-_5c3ZcfSrwvdwdG2Z .feed-content', 'https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml'); // NHL
       
       // Existing menu functionality
       let selectedSection = 'Home';
