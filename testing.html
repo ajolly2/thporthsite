@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>THPORTH</title>
-    <link rel="icon" type="image/png" href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true"
+    />
 
     <style>
       html,
@@ -728,7 +732,7 @@
         >
           Social
         </div>
-        <!-- Single dynamic container for social feeds --> 
+        <!-- Single dynamic container for social feeds -->
         <div id="social-feed-container">
           <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
         </div>
@@ -740,14 +744,15 @@
 
     <!-- Lazy Load Social Feeds Script -->
     <script>
+      // Updated rssFeeds: For UEFAChampionsLeague and PremierLeague, we use an array of feed IDs
       const rssFeeds = {
         Home: "_W0ZzValCUhv9Q88Y",
         MLB: "_wcNmb7Pr9SpM8BQ4",
         NBA: "5RV6ZHeyJhWxORz5",
         NFL: "INJ6Bk4bDkbmuBbD",
         NHL: "pNuN9vyuvzYgmCmy",
-        UEFAChampionsLeague: "fJDD9RMqob2qCjwA",
-        PremierLeague: "neXmnwbubK21ZWYF",
+        UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
+        PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
         MLS: "9EAOd7JHtY1IRVUP",
         Bundesliga: "YPjYmfSS1NyBDka8",
         LaLiga: "iatyOkXWhSWdum53",
@@ -768,14 +773,25 @@
 
       function loadSocialFeed(section) {
         const container = document.getElementById("social-feed-container");
-        const feedId = rssFeeds[section];
-        if (!feedId || currentFeed === section) return;
-        container.innerHTML =
-          '<div style="padding: 10px; font-size: 12px;">Loading feed...</div>';
-        const feedTag = document.createElement("rssapp-feed");
-        feedTag.setAttribute("id", feedId);
+        if (currentFeed === section) return;
         container.innerHTML = "";
-        container.appendChild(feedTag);
+        const feedId = rssFeeds[section];
+        if (feedId) {
+          if (Array.isArray(feedId)) {
+            feedId.forEach(id => {
+              const feedTag = document.createElement("rssapp-feed");
+              feedTag.setAttribute("id", id);
+              container.appendChild(feedTag);
+            });
+          } else {
+            const feedTag = document.createElement("rssapp-feed");
+            feedTag.setAttribute("id", feedId);
+            container.appendChild(feedTag);
+          }
+        } else {
+          container.innerHTML =
+            "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
+        }
         currentFeed = section;
       }
 
