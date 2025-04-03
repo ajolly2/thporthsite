@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>THPORTH</title>
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true"
-    />
+    <link rel="icon" type="image/png" href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true" />
 
     <style>
       html,
@@ -33,7 +29,7 @@
       #topBar {
         width: 100%;
         height: 18px;
-        background-color: #c4c4c4;
+        background-color: #fee12b;
       }
       /* Divider below top bar */
       #topDivider {
@@ -53,7 +49,7 @@
       }
       .main-menu {
         background-color: #151515;
-        color: #91b3a2;
+        color: #fee12b;
         flex: 0 0 165px;
         font-size: 11px;
         padding: 0;
@@ -74,7 +70,7 @@
       #menuTopBox {
         width: 165px;
         height: 18px;
-        background-color: #c4c4c4;
+        background-color: #fee12b;
         padding-left: 2px;
         display: flex;
         align-items: center;
@@ -94,7 +90,7 @@
         margin-bottom: 2px;
         background-color: #000;
         color: #fff;
-        border: 1px solid #c4c4c4;
+        border: 1px solid #fee12b;
         padding: 2px 5px 2px 25px;
         font-size: 10px;
         background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjYzRjNGM0IiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49ImJldmVsIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4=') no-repeat 5px center;
@@ -125,7 +121,7 @@
       /* Selected menu item styling: bold, highlighted background and black text */
       .selected {
         font-weight: bold;
-        background-color: #91b3a2;
+        background-color: #fee12b;
         color: #000;
       }
       #menuList ul {
@@ -388,7 +384,7 @@
               <li data-section="Ligue1">Ligue 1</li>
               <li data-section="UEFAEuropaLeague">UEFA Europa League</li>
               <li data-section="UEFAConferenceLeague">UEFA Conference League</li>
-              <li class="soccer-more-toggle" style="cursor: pointer; color: #91b3a2;" onclick="toggleSoccerMore()">More…</li>
+              <li class="soccer-more-toggle" style="cursor: pointer; color: #fee12b;" onclick="toggleSoccerMore()">More…</li>
             </ul>
             <div id="soccer-more" style="display: none;">
               <ul style="padding-left: 10px;">
@@ -510,7 +506,7 @@
         <!-- News header -->
         <div
           id="newsHeader"
-          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #fee12b; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
         >
           News
         </div>
@@ -728,11 +724,11 @@
       <div class="column social" style="padding: 0; margin: 0;">
         <div
           id="socialHeader"
-          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #fee12b; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
         >
           Social
         </div>
-        <!-- Single dynamic container for social feeds -->
+        <!-- Single dynamic container for social feeds --> 
         <div id="social-feed-container">
           <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
         </div>
@@ -744,15 +740,14 @@
 
     <!-- Lazy Load Social Feeds Script -->
     <script>
-      // Updated rssFeeds: For UEFAChampionsLeague and PremierLeague, we use an array of feed IDs
       const rssFeeds = {
         Home: "_W0ZzValCUhv9Q88Y",
         MLB: "_wcNmb7Pr9SpM8BQ4",
         NBA: "5RV6ZHeyJhWxORz5",
         NFL: "INJ6Bk4bDkbmuBbD",
         NHL: "pNuN9vyuvzYgmCmy",
-        UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
-        PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
+        UEFAChampionsLeague: "fJDD9RMqob2qCjwA",
+        PremierLeague: "neXmnwbubK21ZWYF",
         MLS: "9EAOd7JHtY1IRVUP",
         Bundesliga: "YPjYmfSS1NyBDka8",
         LaLiga: "iatyOkXWhSWdum53",
@@ -777,18 +772,10 @@
         if (!feedId || currentFeed === section) return;
         container.innerHTML =
           '<div style="padding: 10px; font-size: 12px;">Loading feed...</div>';
+        const feedTag = document.createElement("rssapp-feed");
+        feedTag.setAttribute("id", feedId);
         container.innerHTML = "";
-        if (Array.isArray(feedId)) {
-          feedId.forEach(id => {
-            const feedTag = document.createElement("rssapp-feed");
-            feedTag.setAttribute("id", id);
-            container.appendChild(feedTag);
-          });
-        } else {
-          const feedTag = document.createElement("rssapp-feed");
-          feedTag.setAttribute("id", feedId);
-          container.appendChild(feedTag);
-        }
+        container.appendChild(feedTag);
         currentFeed = section;
       }
 
