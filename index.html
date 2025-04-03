@@ -948,12 +948,16 @@
       toggle.textContent = expanded ? 'More…' : 'Less…';
     };
     
-    // Force all links in RSS feeds to open in a new tab
+    // Force all links in RSS feeds to open in a new tab and gray out clicked links
     document.querySelectorAll(".rss-feed a").forEach(link => {
       link.setAttribute("target", "_blank");
+      link.addEventListener("click", () => {
+        link.classList.add("clicked");
+      });
     });
   });
 </script>
+
 
 
 
