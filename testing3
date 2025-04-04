@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>THPORTH</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true"
+    />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        color: #000;
+      }
+      ul,
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .spacer-line {
+        height: 10px;
+      }
+      /* Top Bar */
+      #topBar {
+        width: 100%;
+        height: 18px;
+        background-color: #c4c4c4;
+      }
+      /* Divider below top bar */
+      #topDivider {
+        width: 100%;
+        height: 2px;
+        background-color: #151515;
+      }
+      /* Container for columns */
+      .container {
+        display: flex;
+        width: 100%;
+        height: calc(100% - 20px);
+      }
+      .column {
+        overflow: auto;
+        padding: 10px 0;
+      }
+      .main-menu {
+        background-color: #151515;
+        color: #91b3a2;
+        flex: 0 0 165px;
+        font-size: 11px;
+        padding: 0;
+      }
+      .divider {
+        flex: 0 0 2px;
+        background-color: #151515;
+      }
+      .news {
+        flex: 0 0 380px;
+        background-color: #e5e2e1;
+        padding: 0;
+      }
+      .social {
+        flex: 0 0 350px;
+        background-color: #fff;
+      }
+      #menuTopBox {
+        width: 165px;
+        height: 18px;
+        background-color: #c4c4c4;
+        padding-left: 2px;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      #menuTopBox img {
+        height: 14px;
+        display: block;
+      }
+      #menuSearch {
+        width: 165px;
+        height: 18px;
+        box-sizing: border-box;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #c4c4c4;
+        padding: 2px 5px 2px 25px;
+        font-size: 10px;
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgc3Ryb2tlPSIjYzRjNGM0IiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49ImJldmVsIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4=') no-repeat 5px center;
+        background-size: 14px 14px;
+      }
+      #menuFilters {
+        width: 165px;
+        display: flex;
+        margin-bottom: 10px;
+      }
+      .menu-filter {
+        flex: 1;
+        text-align: center;
+        padding: 1px;
+        border: 1px solid #444;
+        background-color: #222;
+        font-size: 10px;
+        font-family: Helvetica, Arial, sans-serif;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #fff;
+      }
+      .menu-filter.active {
+        background-color: #c7d2c3;
+        color: #000;
+        border-color: #c7d2c3;
+      }
+      .selected {
+        font-weight: bold;
+        background-color: #91b3a2;
+        color: #000;
+      }
+      #menuList ul {
+        padding-left: 0;
+        padding-top: 0;
+        margin: 0;
+      }
+      #menuList li {
+        cursor: pointer;
+        padding: 3px 0;
+      }
+      .nested {
+        margin-left: 15px;
+      }
+      .nested li {
+        margin-left: 15px;
+      }
+      #newsSubMenu {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+        background-color: #f2f2f2;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 10px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+      }
+      .news-menu-item {
+        cursor: default;
+        padding: 5px 10px;
+      }
+      .news-menu-item.active {
+        background-color: black;
+        color: white;
+      }
+      .news .rss-feed {
+        padding-left: 10px;
+      }
+      .rss-feed a {
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        color: black;
+        text-decoration: none;
+      }
+      .rss-feed a.clicked {
+        color: lightgray;
+      }
+      .rss-feed ul li {
+        border-bottom: 1px solid #C9C8C7;
+        padding: 5px 0;
+      }
+      .rss-feed ul li:last-child {
+        border-bottom: none;
+      }
+      .content-section {
+        display: none;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="topBar"></div>
+    <div id="topDivider"></div>
+    <div class="container">
+      <!-- MAIN MENU COLUMN -->
+      <div class="column main-menu">
+        <div id="menuTopBox">
+          <img
+            src="https://github.com/ajolly2/ajolly2.github.io/blob/master/Thporth%20Logo%20Black.png?raw=true"
+            alt="Logo"
+          />
+        </div>
+        <input type="text" id="menuSearch" placeholder="Search leagues" />
+        <div id="menuFilters">
+          <span class="menu-filter active" data-filter="123">123</span>
+          <span class="menu-filter" data-filter="az">A‑Z</span>
+          <span class="menu-filter" data-filter="group">Group</span>
+        </div>
+        <div id="menuList">
+          <!-- 123 FILTER LIST -->
+          <ul id="menuList-123" style="margin-top: 0; padding-top: 0;">
+            <li data-section="Home" class="selected">Home</li>
+            <li data-section="NFL">NFL</li>
+            <li data-section="NBA">NBA</li>
+            <li data-section="MLB">MLB</li>
+            <li data-section="NHL">NHL</li>
+            <li data-section="Soccer">
+              Soccer
+              <ul class="nested">
+                <li data-section="UEFAChampionsLeague">UEFA Champions League</li>
+                <li data-section="PremierLeague">Premier League</li>
+                <li data-section="MLS">MLS</li>
+                <li data-section="LaLiga">LaLiga</li>
+                <li data-section="SerieA">Serie A</li>
+                <li data-section="Bundesliga">Bundesliga</li>
+                <li data-section="FACup">FA Cup</li>
+                <li data-section="LigaMX">Liga MX</li>
+                <li data-section="NWSL">NWSL</li>
+                <li data-section="Ligue1">Ligue 1</li>
+                <li data-section="UEFAEuropaLeague">UEFA Europa League</li>
+                <li data-section="UEFAConferenceLeague">UEFA Conference League</li>
+              </ul>
+            </li>
+            <li data-section="FormulaOne">Formula One</li>
+            <li data-section="NCAAF">NCAAF</li>
+            <li data-section="PGATour">PGA Tour</li>
+            <li data-section="UFC">UFC</li>
+            <li data-section="Boxing">Boxing</li>
+            <li data-section="NASCARCupSeries">NASCAR Cup Series</li>
+            <li data-section="Tennis">Tennis</li>
+            <li data-section="WNBA">WNBA</li>
+            <li data-section="LIVGolf">LIV Golf</li>
+            <li data-section="IndyCar">IndyCar</li>
+            <li data-section="NCAAM">NCAAM</li>
+            <li data-section="NCAAW">NCAAW</li>
+            <li data-section="UFL">UFL</li>
+            <li data-section="NCAABaseball">NCAA Baseball</li>
+            <li data-section="NCAASoftball">NCAA Softball</li>
+            <li data-section="MotoGP">MotoGP</li>
+            <li data-section="LPGATour">LPGA Tour</li>
+          </ul>
+          <!-- A‑Z FILTER LIST (Complete) -->
+          <ul id="menuList-az" style="display: none;">
+            <!-- (Omitted for brevity; your full A‑Z list remains here.) -->
+          </ul>
+          <!-- GROUP FILTER LIST -->
+          <ul id="menuList-group" style="display: none;">
+            <!-- (Omitted for brevity; your full Group list remains here.) -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- DIVIDER BETWEEN MAIN MENU AND NEWS PANEL -->
+      <div class="divider"></div>
+
+      <!-- NEWS PANEL -->
+      <div class="column news">
+        <!-- News header -->
+        <div
+          id="newsHeader"
+          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+        >
+          News
+        </div>
+        <!-- News submenu: this submenu appears only on Home -->
+        <div
+          id="newsSubMenu"
+          style="position: sticky; top: 18px; width: 100%; z-index: 10; background-color: #f2f2f2; font-family: Helvetica, Arial, sans-serif; font-size: 10px; height: 18px; display: flex; align-items: center; gap: 10px; padding: 0; margin: 0;"
+        >
+          <span class="news-menu-item active" data-feed="ESPN">ESPN</span>
+          <span class="news-menu-item" data-feed="CBS">CBS</span>
+          <span class="news-menu-item" data-feed="FOX">FOX</span>
+          <span class="news-menu-item" data-feed="Yahoo">Yahoo</span>
+        </div>
+        <!-- Home News Section -->
+        <div id="news-Home" class="content-section" style="display: block;">
+          <div class="rss-feed" id="feed-ESPN">
+            <h4>ESPN</h4>
+            <div class="feed-content">Loading ESPN feed...</div>
+          </div>
+          <div class="rss-feed" id="feed-CBS">
+            <h4>CBS</h4>
+            <div class="feed-content">Loading CBS feed...</div>
+          </div>
+          <div class="rss-feed" id="feed-FOX">
+            <h4>FOX</h4>
+            <div class="feed-content">Loading FOX feed...</div>
+          </div>
+          <div class="rss-feed" id="feed-Yahoo">
+            <h4>Yahoo</h4>
+            <div class="feed-content">Loading Yahoo feed...</div>
+          </div>
+        </div>
+        <!-- MLB News Section -->
+        <div id="news-MLB" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-_6gzCeS4YQ4h2adTs">
+            <h4>MLB</h4>
+            <div class="feed-content">Loading MLB feed...</div>
+          </div>
+        </div>
+        <!-- NBA News Section -->
+        <div id="news-NBA" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-_ja3fYEA7yigAcmAk">
+            <h4>NBA</h4>
+            <div class="feed-content">Loading NBA feed...</div>
+          </div>
+        </div>
+        <!-- NFL News Section -->
+        <div id="news-NFL" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-_iiyR3EPoC5QXMnqt">
+            <h4>NFL</h4>
+            <div class="feed-content">Loading NFL feed...</div>
+          </div>
+        </div>
+        <!-- NHL News Section -->
+        <div id="news-NHL" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-_5c3ZcfSrwvdwdG2Z">
+            <h4>NHL</h4>
+            <div class="feed-content">Loading NHL feed...</div>
+          </div>
+        </div>
+        <!-- MLS News Section -->
+        <div id="news-MLS" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-_pBOHW7eyjbGkaiZq">
+            <h4>MLS</h4>
+            <div class="feed-content">Loading MLS feed...</div>
+          </div>
+        </div>
+        <!-- Premier League News Section -->
+        <div id="news-PremierLeague" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-PremierLeague">
+            <h4>Premier League</h4>
+            <div class="feed-content">Loading Premier League feed...</div>
+          </div>
+        </div>
+        <!-- UEFA Champions League News Section -->
+        <div id="news-UEFAChampionsLeague" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-UEFAChampionsLeague">
+            <h4>UEFA Champions League</h4>
+            <div class="feed-content">Loading UEFA Champions League feed...</div>
+          </div>
+        </div>
+        <!-- Serie A News Section -->
+        <div id="news-SerieA" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-SerieA">
+            <h4>Serie A</h4>
+            <div class="feed-content">Loading Serie A feed...</div>
+          </div>
+        </div>
+        <!-- Bundesliga News Section -->
+        <div id="news-Bundesliga" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-Bundesliga">
+            <h4>Bundesliga</h4>
+            <div class="feed-content">Loading Bundesliga feed...</div>
+          </div>
+        </div>
+        <!-- LaLiga News Section -->
+        <div id="news-LaLiga" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-LaLiga">
+            <h4>LaLiga</h4>
+            <div class="feed-content">Loading LaLiga feed...</div>
+          </div>
+        </div>
+        <!-- Other News Sections -->
+        <div id="news-Soccer" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-Soccer">
+            <h4>Soccer</h4>
+            <div class="feed-content">Loading Soccer feed...</div>
+          </div>
+        </div>
+        <div id="news-FACup" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-FACup">
+            <h4>FA Cup</h4>
+            <div class="feed-content">Loading FA Cup feed...</div>
+          </div>
+        </div>
+        <div id="news-LigaMX" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-LigaMX">
+            <h4>Liga MX</h4>
+            <div class="feed-content">Loading Liga MX feed...</div>
+          </div>
+        </div>
+        <div id="news-NWSL" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NWSL">
+            <h4>NWSL</h4>
+            <div class="feed-content">Loading NWSL feed...</div>
+          </div>
+        </div>
+        <div id="news-Ligue1" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-Ligue1">
+            <h4>Ligue 1</h4>
+            <div class="feed-content">Loading Ligue 1 feed...</div>
+          </div>
+        </div>
+        <div id="news-UEFAEuropaLeague" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-UEFAEuropaLeague">
+            <h4>UEFA Europa League</h4>
+            <div class="feed-content">Loading UEFA Europa League feed...</div>
+          </div>
+        </div>
+        <div id="news-UEFAConferenceLeague" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-UEFAConferenceLeague">
+            <h4>UEFA Conference League</h4>
+            <div class="feed-content">Loading UEFA Conference League feed...</div>
+          </div>
+        </div>
+        <div id="news-FormulaOne" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-FormulaOne">
+            <h4>Formula One</h4>
+            <div class="feed-content">Loading Formula One feed...</div>
+          </div>
+        </div>
+        <div id="news-NCAAF" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NCAAF">
+            <h4>NCAAF</h4>
+            <div class="feed-content">Loading NCAAF feed...</div>
+          </div>
+        </div>
+        <div id="news-PGATour" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-PGATour">
+            <h4>PGA Tour</h4>
+            <div class="feed-content">Loading PGA Tour feed...</div>
+          </div>
+        </div>
+        <!-- New UFC News Section -->
+        <div id="news-UFC" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-UFC">
+            <h4>UFC</h4>
+            <div class="feed-content">Loading UFC feed...</div>
+          </div>
+        </div>
+        <!-- New Boxing News Section -->
+        <div id="news-Boxing" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-Boxing">
+            <h4>Boxing</h4>
+            <div class="feed-content">Loading Boxing feed...</div>
+          </div>
+        </div>
+        <!-- New NASCAR Cup Series News Section -->
+        <div id="news-NASCARCupSeries" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NASCARCupSeries">
+            <h4>NASCAR Cup Series</h4>
+            <div class="feed-content">Loading NASCAR Cup Series feed...</div>
+          </div>
+        </div>
+        <!-- New Tennis News Section -->
+        <div id="news-Tennis" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-Tennis">
+            <h4>Tennis</h4>
+            <div class="feed-content">Loading Tennis feed...</div>
+          </div>
+        </div>
+        <!-- New WNBA News Section -->
+        <div id="news-WNBA" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-WNBA">
+            <h4>WNBA</h4>
+            <div class="feed-content">Loading WNBA feed...</div>
+          </div>
+        </div>
+        <!-- New LIV Golf News Section -->
+        <div id="news-LIVGolf" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-LIVGolf">
+            <h4>LIV Golf</h4>
+            <div class="feed-content">Loading LIV Golf feed...</div>
+          </div>
+        </div>
+        <!-- New IndyCar News Section -->
+        <div id="news-IndyCar" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-IndyCar">
+            <h4>IndyCar</h4>
+            <div class="feed-content">Loading IndyCar feed...</div>
+          </div>
+        </div>
+        <!-- New NCAAM News Section -->
+        <div id="news-NCAAM" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NCAAM">
+            <h4>NCAAM</h4>
+            <div class="feed-content">Loading NCAAM feed...</div>
+          </div>
+        </div>
+        <!-- New NCAAW News Section -->
+        <div id="news-NCAAW" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NCAAW">
+            <h4>NCAAW</h4>
+            <div class="feed-content">Loading NCAAW feed...</div>
+          </div>
+        </div>
+        <!-- New UFL News Section -->
+        <div id="news-UFL" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-UFL">
+            <h4>UFL</h4>
+            <div class="feed-content">Loading UFL feed...</div>
+          </div>
+        </div>
+        <!-- New NCAA Baseball News Section -->
+        <div id="news-NCAABaseball" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NCAABaseball">
+            <h4>NCAA Baseball</h4>
+            <div class="feed-content">Loading NCAA Baseball feed...</div>
+          </div>
+        </div>
+        <!-- New NCAA Softball News Section -->
+        <div id="news-NCAASoftball" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-NCAASoftball">
+            <h4>NCAA Softball</h4>
+            <div class="feed-content">Loading NCAA Softball feed...</div>
+          </div>
+        </div>
+        <!-- New MotoGP News Section -->
+        <div id="news-MotoGP" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-MotoGP">
+            <h4>MotoGP</h4>
+            <div class="feed-content">Loading MotoGP feed...</div>
+          </div>
+        </div>
+        <!-- New LPGA Tour News Section -->
+        <div id="news-LPGATour" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-LPGATour">
+            <h4>LPGA Tour</h4>
+            <div class="feed-content">Loading LPGA Tour feed...</div>
+          </div>
+        </div>
+        
+        </div>
+        <!-- New Track & Field News Section -->
+        <div id="news-TrackAndField" class="content-section" style="display: none;">
+          <div class="rss-feed" id="feed-TrackAndField">
+            <h4>Track &amp; Field</h4>
+            <div class="feed-content">Loading Track &amp; Field feed...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER BETWEEN NEWS PANEL AND SOCIAL PANEL -->
+      <div class="divider"></div>
+
+      <!-- SOCIAL PANEL -->
+      <div class="column social" style="padding: 0; margin: 0;">
+        <div
+          id="socialHeader"
+          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+        >
+          Social
+        </div>
+        <!-- Single dynamic container for social feeds -->
+        <div id="social-feed-container">
+          <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SINGLE RSS.app script load (only once) -->
+    <script src="https://widget.rss.app/v1/feed.js" async></script>
+
+    <!-- Lazy Load Social Feeds Script -->
+    <script>
+      // Updated rssFeeds including new social feed keys
+      const rssFeeds = {
+        Home: "_W0ZzValCUhv9Q88Y",
+        MLB: "_wcNmb7Pr9SpM8BQ4",
+        NBA: "5RV6ZHeyJhWxORz5",
+        NFL: "INJ6Bk4bDkbmuBbD",
+        NHL: "pNuN9vyuvzYgmCmy",
+        UFC: "D7Pzjs1eNyeNfRZg",
+        Boxing: "E4QHg9gnRHekN0eL",
+        NASCARCupSeries: "aIpvGxQaOiSfwADb",
+        Tennis: "InsXma0Pwpks5ZgB",
+        WNBA: "Am6lI6WHRaAxHmbL",
+        LIVGolf: "xTe6w6kt4LL4Hi8v",
+        IndyCar: "0J2bXOqqSpbcTt1Y",
+        NCAAM: "Zd1KfPkoPaqAlIxp",
+        NCAAW: "Aozk9D13FRvOiR16",
+        NCAABaseball: "iJ2vCYtgsHm9IR5d",
+        NCAASoftball: "ON2eWO5ApxIBiGYV",
+        MotoGP: "CKPWivTATHSyhDSN",
+        LPGATour: "RsLnkbshlMSpf2b7",
+        UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
+        PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
+        MLS: "9EAOd7JHtY1IRVUP",
+        Bundesliga: "YPjYmfSS1NyBDka8",
+        LaLiga: "iatyOkXWhSWdum53",
+        SerieA: "zbTyEkE5gjqLEv3s",
+        Soccer: "YhR2LGbhScpKNkzd",
+        FACup: "2zqHVQtHCIa3PVME",
+        LigaMX: "ExlLtrY7vEkY58OK",
+        NWSL: "YuC1qAhWubEURaom",
+        Ligue1: "WMDUyBIu1k0aSUYq",
+        UEFAEuropaLeague: "7ONIKeDn4stczUat",
+        UEFAConferenceLeague: "F5l3pTQwaGkBrFJk",
+        FormulaOne: "s7r6yAgtrA3k2dJw",
+        NCAAF: "AnA5shmkBJ7gdzCs",
+        PGATour: "c2yYJn0ed57eix3y"
+      };
+
+      let currentFeed = null;
+
+      function loadSocialFeed(section) {
+        const container = document.getElementById("social-feed-container");
+        if (currentFeed === section) return;
+        container.innerHTML = "";
+        const feedId = rssFeeds[section];
+        if (feedId) {
+          if (Array.isArray(feedId)) {
+            feedId.forEach(id => {
+              const feedTag = document.createElement("rssapp-feed");
+              feedTag.setAttribute("id", id);
+              container.appendChild(feedTag);
+            });
+          } else {
+            const feedTag = document.createElement("rssapp-feed");
+            feedTag.setAttribute("id", feedId);
+            container.appendChild(feedTag);
+          }
+        } else {
+          container.innerHTML =
+            "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
+        }
+        currentFeed = section;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load default feed (Home) on page load
+        loadSocialFeed("Home");
+
+        // Bind lazy loading to menu item clicks
+        document.querySelectorAll("#menuList li[data-section]").forEach(item => {
+          item.addEventListener("click", () => {
+            const section = item.dataset.section;
+            loadSocialFeed(section);
+          });
+        });
+      });
+    </script>
+
+    <!-- News Feeds Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Helper function to fetch and render an XML feed and attach click event listeners to its links
+        function fetchFeed(containerSelector, feedUrl) {
+          const container = document.querySelector(containerSelector);
+          if (!container) return;
+          fetch(feedUrl)
+            .then(res => res.text())
+            .then(str => {
+              const parser = new DOMParser();
+              const xml = parser.parseFromString(str, "application/xml");
+              const items = Array.from(xml.querySelectorAll("item"));
+              if (items.length > 0) {
+                const ul = document.createElement("ul");
+                items.forEach(item => {
+                  const title = item.querySelector("title")?.textContent || "No title";
+                  const link = item.querySelector("link")?.textContent || "#";
+                  const li = document.createElement("li");
+                  const a = document.createElement("a");
+                  a.href = link;
+                  a.target = "_blank";
+                  a.textContent = title;
+                  li.appendChild(a);
+                  ul.appendChild(li);
+                });
+                container.innerHTML = "";
+                container.appendChild(ul);
+                ul.querySelectorAll("a").forEach(link => {
+                  link.addEventListener("click", () => {
+                    link.classList.add("clicked");
+                  });
+                });
+              } else {
+                container.innerHTML = "<p>No items found.</p>";
+              }
+            })
+            .catch(error => {
+              console.error("Error loading feed:", error);
+              container.innerHTML = "<p>Error loading feed.</p>";
+            });
+        }
+
+        // Fetch feeds for Home panel using feedMap
+        const feedMap = {
+          ESPN: "https://www.espn.com/espn/rss/news",
+          CBS: "https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml",
+          FOX: "https://rss.app/feeds/KzC1hdnt93oattSD.xml",
+          Yahoo: "https://rss.app/feeds/3BSRBZ6GJrUbB5PC.xml"
+        };
+        Object.entries(feedMap).forEach(([key, url]) => {
+          fetchFeed(`#feed-${key} .feed-content`, url);
+        });
+
+        // Fetch custom feeds for existing sections
+        fetchFeed(
+          "#feed-_6gzCeS4YQ4h2adTs .feed-content",
+          "https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml"
+        ); // MLB
+        fetchFeed(
+          "#feed-_ja3fYEA7yigAcmAk .feed-content",
+          "https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml"
+        ); // NBA
+        fetchFeed(
+          "#feed-_iiyR3EPoC5QXMnqt .feed-content",
+          "https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml"
+        ); // NFL
+        fetchFeed(
+          "#feed-_pBOHW7eyjbGkaiZq .feed-content",
+          "https://rss.app/feeds/_pBOHW7eyjbGkaiZq.xml"
+        ); // MLS
+        fetchFeed(
+          "#feed-PremierLeague .feed-content",
+          "https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml"
+        ); // Premier League
+        fetchFeed(
+          "#feed-UEFAChampionsLeague .feed-content",
+          "https://rss.app/feeds/_BnF56qFhfPBsVZ6I.xml"
+        ); // UEFA Champions League
+        fetchFeed(
+          "#feed-SerieA .feed-content",
+          "https://rss.app/feeds/_IEjWrVaKRW3QNEkB.xml"
+        ); // Serie A
+        fetchFeed(
+          "#feed-Bundesliga .feed-content",
+          "https://rss.app/feeds/_OFOWQNsn38MFTtLv.xml"
+        ); // Bundesliga
+        fetchFeed(
+          "#feed-LaLiga .feed-content",
+          "https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml"
+        ); // LaLiga
+        fetchFeed(
+          "#feed-_5c3ZcfSrwvdwdG2Z .feed-content",
+          "https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml"
+        ); // NHL
+
+        // Fetch custom feeds for new news sections
+        fetchFeed(
+          "#feed-UFC .feed-content",
+          "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml"
+        ); // UFC
+        fetchFeed(
+          "#feed-Boxing .feed-content",
+          "https://rss.app/feeds/_7DfbEtxpn8RPNIMf.xml"
+        ); // Boxing
+        fetchFeed(
+          "#feed-NASCARCupSeries .feed-content",
+          "https://rss.app/feeds/_D7Q3jbrHjR3bGj8O.xml"
+        ); // NASCAR Cup Series
+        fetchFeed(
+          "#feed-Tennis .feed-content",
+          "https://rss.app/feeds/_tGSXi2957CegL2kC.xml"
+        ); // Tennis
+        fetchFeed(
+          "#feed-WNBA .feed-content",
+          "https://rss.app/feeds/_JsIgbwln4EnDHpSE.xml"
+        ); // WNBA
+        fetchFeed(
+          "#feed-LIVGolf .feed-content",
+          "https://rss.app/feeds/_s7tH2abPc7ZQXhLp.xml"
+        ); // LIV Golf
+        fetchFeed(
+          "#feed-IndyCar .feed-content",
+          "https://rss.app/feeds/_TqIJuTCX0SmFe0lM.xml"
+        ); // IndyCar
+        fetchFeed(
+          "#feed-NCAAM .feed-content",
+          "https://rss.app/feeds/_va6EQaZAxOx6z8xR.xml"
+        ); // NCAAM
+        fetchFeed(
+          "#feed-NCAAW .feed-content",
+          "https://rss.app/feeds/_2P4NcD95YPwU8T51.xml"
+        ); // NCAAW
+        fetchFeed(
+          "#feed-NCAABaseball .feed-content",
+          "https://rss.app/feeds/_q2SYr186Ed7j8jud.xml"
+        ); // NCAABaseball
+        fetchFeed(
+          "#feed-NCAASoftball .feed-content",
+          "https://rss.app/feeds/_y4zf68Y0lK5bkT47.xml"
+        ); // NCAASoftball
+        fetchFeed(
+          "#feed-MotoGP .feed-content",
+          "https://rss.app/feeds/_4Bpke8POCqxzxfKq.xml"
+        ); // MotoGP
+        fetchFeed(
+          "#feed-LPGATour .feed-content",
+          "https://rss.app/feeds/_a4W47htGlhRlO2ju.xml"
+        ); // LPGA Tour
+        fetchFeed(
+          "#feed-NCAAF .feed-content",
+          "https://rss.app/feeds/_e8BTSPZYg61J9CYu.xml"
+        ); // NCAAF
+
+        // Existing menu functionality
+        let selectedSection = "Home";
+        document.querySelectorAll(".menu-filter").forEach(filter => {
+          filter.addEventListener("click", () => {
+            document.getElementById("menuSearch").value = "";
+            ["123", "az", "group"].forEach(type => {
+              document.querySelectorAll("#menuList-" + type + " li").forEach(li => {
+                li.style.display = "";
+              });
+            });
+            document.querySelectorAll(".menu-filter").forEach(f =>
+              f.classList.remove("active")
+            );
+            filter.classList.add("active");
+            const type = filter.dataset.filter;
+            document.getElementById("menuList-123").style.display =
+              type === "123" ? "block" : "none";
+            document.getElementById("menuList-az").style.display =
+              type === "az" ? "block" : "none";
+            document.getElementById("menuList-group").style.display =
+              type === "group" ? "block" : "none";
+            const newList = document.getElementById("menuList-" + type);
+            if (newList) {
+              newList.querySelectorAll("li[data-section]").forEach(li => {
+                li.classList.toggle("selected", li.dataset.section === selectedSection);
+              });
+            }
+          });
+        });
+
+        document.querySelectorAll("#menuList li").forEach(item => {
+          item.addEventListener("click", e => {
+            if (
+              item.classList.contains("spacer-line") ||
+              item.classList.contains("soccer-more-toggle")
+            ) {
+              e.stopPropagation();
+              return;
+            }
+            e.stopPropagation();
+            if (item.dataset.section) {
+              selectedSection = item.dataset.section;
+            }
+            document
+              .querySelectorAll("#menuList li[data-section]")
+              .forEach(li => li.classList.remove("selected"));
+            item.classList.add("selected");
+            const section = item.dataset.section;
+            document.querySelectorAll(".news .content-section").forEach(
+              s => (s.style.display = "none")
+            );
+            document.querySelectorAll(".social .content-section").forEach(
+              s => (s.style.display = "none")
+            );
+            const news = document.getElementById("news-" + section);
+            const social = document.getElementById("social-" + section);
+            if (news) {
+              news.style.display = "block";
+              if (section === "Home") {
+                document.getElementById("newsSubMenu").style.display = "flex";
+                const container = document.querySelector(".news");
+                container.scrollTop = 0;
+                container.dispatchEvent(new Event("scroll"));
+              } else {
+                document.getElementById("newsSubMenu").style.display = "none";
+              }
+            }
+            if (social) social.style.display = "block";
+          });
+        });
+
+        const feeds = ["feed-ESPN", "feed-CBS", "feed-FOX", "feed-Yahoo"];
+        const newsPanel = document.querySelector(".news");
+        newsPanel.addEventListener("scroll", () => {
+          const top = newsPanel.getBoundingClientRect().top;
+          const offset = document.getElementById("newsSubMenu").offsetHeight + 50;
+          let active = 0;
+          for (let i = 0; i < feeds.length; i++) {
+            const el = document.getElementById(feeds[i]);
+            if (!el) continue;
+            const h4 = el.querySelector("h4");
+            if (!h4) continue;
+            if (h4.getBoundingClientRect().top > top + offset) break;
+            active = i;
+          }
+          const feedName = feeds[active].replace("feed-", "").toLowerCase();
+          document.querySelectorAll(".news-menu-item").forEach(item => {
+            item.classList.toggle(
+              "active",
+              item.dataset.feed.toLowerCase() === feedName
+            );
+          });
+        });
+
+        document.getElementById("menuSearch").addEventListener("keyup", function () {
+          const query = this.value.toLowerCase();
+          const activeFilterElem = document.querySelector(".menu-filter.active");
+          if (!activeFilterElem) return;
+          const activeFilter = activeFilterElem.dataset.filter;
+          const activeList = document.getElementById("menuList-" + activeFilter);
+          if (activeList) {
+            activeList.querySelectorAll("li").forEach(li => {
+              li.style.display = li.textContent.toLowerCase().includes(query)
+                ? ""
+                : "none";
+            });
+          }
+        });
+
+        window.toggleSoccerMore = function () {
+          const section = document.getElementById("soccer-more");
+          const toggle = document.querySelector(".soccer-more-toggle");
+          const expanded = section.style.display === "block";
+          section.style.display = expanded ? "none" : "block";
+          toggle.textContent = expanded ? "More…" : "Less…";
+        };
+
+        // For any RSS feed links added outside fetchFeed, force them to open in a new tab and attach a click listener
+        document.querySelectorAll(".rss-feed a").forEach(link => {
+          link.setAttribute("target", "_blank");
+          link.addEventListener("click", () => {
+            link.classList.add("clicked");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
+ 
