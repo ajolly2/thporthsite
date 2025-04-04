@@ -1208,7 +1208,7 @@ fetchFeed(
           });
         });
       });
-      function showSecondSocialSection(section) {
+     function showSecondSocialSection(section) {
   document.querySelectorAll("#second-social-panel .content-section").forEach(el => {
     el.style.display = "none";
   });
@@ -1218,8 +1218,13 @@ fetchFeed(
   }
 }
 
-// And when NBA is selected, call:
-showSecondSocialSection("NBA");
+// When a menu item is clicked:
+document.querySelectorAll("#menuList li[data-section]").forEach(item => {
+  item.addEventListener("click", () => {
+    const section = item.dataset.section; // should be "NBA" for NBA
+    showSecondSocialSection(section);
+  });
+});
     </script>
   </body>
 </html>
