@@ -853,9 +853,7 @@
               s => (s.style.display = "none")
             );
             const news = document.getElementById("news-" + section);
-            const social = document.getElementById("social-" + section);
-            if (news) {
-              news.style.display = "block";
+            document.querySelector(".column.social").style.display = "block";
               if (section === "Home") {
                 document.getElementById("newsSubMenu").style.display = "flex";
                 const container = document.querySelector(".news");
