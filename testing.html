@@ -674,9 +674,13 @@
             <div class="feed-content">Loading PGA Tour feed...</div>
           </div>
         </div>
-        <div id="news-UFC" class="content-section" style="display: none;">
-          Placeholder content for UFC (News)
-        </div>
+      <div id="news-UFC" class="content-section" style="display: none;">
+  <div class="rss-feed" id="feed-UFC">
+    <h4>UFC</h4>
+    <div class="feed-content">Loading UFC feed...</div>
+  </div>
+</div>
+
         <div id="news-Boxing" class="content-section" style="display: none;">
           Placeholder content for Boxing (News)
         </div>
@@ -904,6 +908,10 @@
           "#feed-_5c3ZcfSrwvdwdG2Z .feed-content",
           "https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml"
         ); // NHL
+fetchFeed("#feed-UFC .feed-content", "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml");
+// UFC
+
+
 
         // Fetch custom feeds for new news sections
         fetchFeed(
