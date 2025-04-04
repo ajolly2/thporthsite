@@ -745,13 +745,13 @@
       </div>
     </div>
 
- <script src="https://widget.rss.app/v1/feed.js" async></script>
+<script src="https://widget.rss.app/v1/feed.js" async></script>
 <script>
   /***********************
    * Social Feeds Loader *
    ***********************/
-  // Social feed mapping.
-  // Keys must exactly match your menu items’ data-section attributes.
+  // Mapping for all social-[section] feed IDs.
+  // Ensure each key exactly matches your menu items’ data-section attributes.
   const rssSocialFeeds = {
     Home: "_W0ZzValCUhv9Q88Y",
     UFC: "D7Pzjs1eNyeNfRZg",
@@ -767,9 +767,12 @@
     NCAASoftball: "ON2eWO5ApxIBiGYV",
     MotoGP: "CKPWivTATHSyhDSN",
     LPGATour: "RsLnkbshlMSpf2b7",
-    NFL: "INJ6Bk4bDkbmuBbD",  // Added NFL
-    NBA: "5RV6ZHeyJhWxORz5",  // Added NBA
-    NHL: "pNuN9vyuvzYgmCmy"   // Added NHL
+    NFL: "INJ6Bk4bDkbmuBbD",
+    NBA: "5RV6ZHeyJhWxORz5",
+    NHL: "pNuN9vyuvzYgmCmy",
+    FormulaOne: "s7r6yAgtrA3k2dJw",
+    NCAAF: "AnA5shmkBJ7gdzCs",
+    PGATour: "c2yYJn0ed57eix3y"
   };
 
   let currentSocialFeed = null;
@@ -779,7 +782,7 @@
     container.innerHTML = "";
     const feedId = rssSocialFeeds[section];
     if (feedId) {
-      // If feedId is an array, create an element for each.
+      // If the mapping returns an array, create a widget for each ID.
       if (Array.isArray(feedId)) {
         feedId.forEach(id => {
           const feedTag = document.createElement("rssapp-feed");
@@ -792,8 +795,7 @@
         container.appendChild(feedTag);
       }
     } else {
-      container.innerHTML =
-        "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
+      container.innerHTML = "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
     }
     currentSocialFeed = section;
   }
@@ -845,9 +847,9 @@
    ***********************/
   document.addEventListener("DOMContentLoaded", () => {
     // -- Social Feeds --
-    // Load default social feed (Home)
+    // Load default social feed (Home) on page load.
     loadSocialFeed("Home");
-    // Bind social feed loader to menu items
+    // Bind social feed loader to menu item clicks.
     document.querySelectorAll("#menuList li[data-section]").forEach(item => {
       item.addEventListener("click", () => {
         loadSocialFeed(item.dataset.section);
@@ -855,7 +857,7 @@
     });
 
     // -- News Feeds --
-    // Default news feed mapping for Home panel
+    // News feed mapping for Home panel.
     const newsFeedMap = {
       ESPN: "https://www.espn.com/espn/rss/news",
       CBS: "https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml",
@@ -866,7 +868,7 @@
       fetchFeed(`#feed-${key} .feed-content`, url);
     });
 
-    // Existing custom news feeds
+    // Existing custom news feeds.
     fetchFeed("#feed-_6gzCeS4YQ4h2adTs .feed-content", "https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml"); // MLB
     fetchFeed("#feed-_ja3fYEA7yigAcmAk .feed-content", "https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml"); // NBA
     fetchFeed("#feed-_iiyR3EPoC5QXMnqt .feed-content", "https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml"); // NFL
@@ -878,7 +880,7 @@
     fetchFeed("#feed-LaLiga .feed-content", "https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml"); // LaLiga
     fetchFeed("#feed-_5c3ZcfSrwvdwdG2Z .feed-content", "https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml"); // NHL
 
-    // New news feeds
+    // New news feeds.
     fetchFeed("#feed-UFC .feed-content", "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml");
     fetchFeed("#feed-Boxing .feed-content", "https://rss.app/feeds/_7DfbEtxpn8RPNIMf.xml");
     fetchFeed("#feed-NASCARCupSeries .feed-content", "https://rss.app/feeds/_D7Q3jbrHjR3bGj8O.xml");
@@ -892,9 +894,6 @@
     fetchFeed("#feed-NCAASoftball .feed-content", "https://rss.app/feeds/_y4zf68Y0lK5bkT47.xml");
     fetchFeed("#feed-MotoGP .feed-content", "https://rss.app/feeds/_4Bpke8POCqxzxfKq.xml");
     fetchFeed("#feed-LPGATour .feed-content", "https://rss.app/feeds/_a4W47htGlhRlO2ju.xml");
-fetchFeed("#feed-UFC .feed-content", "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml");
-
-
 
     /***********************
      * Menu and Search Code *
@@ -1004,6 +1003,8 @@ fetchFeed("#feed-UFC .feed-content", "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xm
     });
   });
 </script>
+
+
 
 
   </body>
