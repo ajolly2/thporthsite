@@ -9,7 +9,6 @@
       type="image/png"
       href="https://github.com/ajolly2/thporthsite/blob/main/thporth_favicon.png?raw=true"
     />
-
     <style>
       html,
       body {
@@ -122,7 +121,7 @@
         color: #000;
         border-color: #c7d2c3;
       }
-      /* Selected menu item styling: bold, highlighted background and black text */
+      /* Selected menu item styling */
       .selected {
         font-weight: bold;
         background-color: #91b3a2;
@@ -198,10 +197,7 @@
       <!-- MAIN MENU COLUMN -->
       <div class="column main-menu">
         <div id="menuTopBox">
-          <img
-            src="https://github.com/ajolly2/ajolly2.github.io/blob/master/Thporth%20Logo%20Black.png?raw=true"
-            alt="Logo"
-          />
+          <img src="https://github.com/ajolly2/ajolly2.github.io/blob/master/Thporth%20Logo%20Black.png?raw=true" alt="Logo" />
         </div>
         <input type="text" id="menuSearch" placeholder="Search leagues" />
         <div id="menuFilters">
@@ -212,6 +208,7 @@
         <div id="menuList">
           <!-- 123 FILTER LIST -->
           <ul id="menuList-123" style="margin-top: 0; padding-top: 0;">
+            <!-- (Include your full list items here) -->
             <li data-section="Home" class="selected">Home</li>
             <li data-section="NFL">NFL</li>
             <li data-section="NBA">NBA</li>
@@ -252,14 +249,7 @@
             <li data-section="MotoGP">MotoGP</li>
             <li data-section="LPGATour">LPGA Tour</li>
           </ul>
-          <!-- A‑Z FILTER LIST (Complete) -->
-          <ul id="menuList-az" style="display: none;">
-            <!-- (A‑Z list items omitted for brevity; include your full list here) -->
-          </ul>
-          <!-- GROUP FILTER LIST -->
-          <ul id="menuList-group" style="display: none;">
-            <!-- (Group filter list items omitted for brevity; include your full list here) -->
-          </ul>
+          <!-- (Include your full A‑Z and Group filter lists as needed) -->
         </div>
       </div>
 
@@ -275,7 +265,7 @@
         >
           News
         </div>
-        <!-- News submenu: this submenu appears only on Home -->
+        <!-- News submenu (appears on Home) -->
         <div
           id="newsSubMenu"
           style="position: sticky; top: 18px; width: 100%; z-index: 10; background-color: #f2f2f2; font-family: Helvetica, Arial, sans-serif; font-size: 10px; height: 18px; display: flex; align-items: center; gap: 10px; padding: 0; margin: 0;"
@@ -304,7 +294,7 @@
             <div class="feed-content">Loading Yahoo feed...</div>
           </div>
         </div>
-        <!-- Existing sections (MLB, NBA, NFL, NHL, MLS, PremierLeague, UEFAChampionsLeague, SerieA, Bundesliga, LaLiga, Soccer, FACup, LigaMX, NWSL, Ligue1, UEFAEuropaLeague, UEFAConferenceLeague, FormulaOne, NCAAF, PGATour) -->
+        <!-- Existing News Sections -->
         <div id="news-MLB" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_6gzCeS4YQ4h2adTs">
             <h4>MLB</h4>
@@ -425,7 +415,7 @@
             <div class="feed-content">Loading PGA Tour feed...</div>
           </div>
         </div>
-        <!-- New News Sections with RSS.app XML feeds -->
+        <!-- New News Sections -->
         <div id="news-UFC" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-UFC">
             <h4>UFC</h4>
@@ -523,19 +513,21 @@
         >
           Social
         </div>
-        <!-- Single dynamic container for social feeds -->
+        <!-- Social feeds container -->
         <div id="social-feed-container">
           <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
         </div>
       </div>
     </div>
 
-    <!-- SINGLE RSS.app script load (only once) -->
+    <!-- Load RSS.app widget once -->
     <script src="https://widget.rss.app/v1/feed.js" async></script>
 
-    <!-- Lazy Load Social Feeds Script -->
+    <!-- Combined Script: Social Feeds, News Feeds, and Menu Functionality -->
     <script>
-      // Social feeds mapping using data-feed-id attributes
+      // -------------------------------
+      // Social Feeds: Using data-feed-id attribute
+      // -------------------------------
       const rssSocialFeeds = {
         Home: "_W0ZzValCUhv9Q88Y",
         UFC: "D7Pzjs1eNyeNfRZg",
@@ -554,41 +546,24 @@
       };
 
       let currentSocialFeed = null;
-
       function loadSocialFeed(section) {
         const container = document.getElementById("social-feed-container");
         if (currentSocialFeed === section) return;
         container.innerHTML = "";
         const feedId = rssSocialFeeds[section];
         if (feedId) {
-          // Create an rssapp-feed element with the data-feed-id attribute
           const feedTag = document.createElement("rssapp-feed");
           feedTag.setAttribute("data-feed-id", feedId);
           container.appendChild(feedTag);
         } else {
-          container.innerHTML =
-            "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
+          container.innerHTML = "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
         }
         currentSocialFeed = section;
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // Load default social feed (Home) on page load
-        loadSocialFeed("Home");
-
-        // Bind lazy loading to menu item clicks for social feeds
-        document.querySelectorAll("#menuList li[data-section]").forEach(item => {
-          item.addEventListener("click", () => {
-            const section = item.dataset.section;
-            loadSocialFeed(section);
-          });
-        });
-      });
-    </script>
-
-    <!-- XML RSS Feed Fetch Script for News Panel -->
-    <script>
-      // Helper function to fetch and render an XML feed
+      // -------------------------------
+      // News Feeds: XML RSS Fetch Function
+      // -------------------------------
       function fetchFeed(containerSelector, feedUrl) {
         const container = document.querySelector(containerSelector);
         if (!container) return;
@@ -601,8 +576,8 @@
             if (items.length > 0) {
               const ul = document.createElement("ul");
               items.forEach(item => {
-                const title = item.querySelector("title")?.textContent || "No title";
-                const link = item.querySelector("link")?.textContent || "#";
+                const title = item.querySelector("title") ? item.querySelector("title").textContent : "No title";
+                const link = item.querySelector("link") ? item.querySelector("link").textContent : "#";
                 const li = document.createElement("li");
                 const a = document.createElement("a");
                 a.href = link;
@@ -628,19 +603,32 @@
           });
       }
 
+      // -------------------------------
+      // Combined DOMContentLoaded Initialization
+      // -------------------------------
       document.addEventListener("DOMContentLoaded", () => {
-        // Fetch feeds for Home panel
-        const feedMap = {
+        // Load default social feed (Home)
+        loadSocialFeed("Home");
+        // Bind social feed loader to menu clicks
+        document.querySelectorAll("#menuList li[data-section]").forEach(item => {
+          item.addEventListener("click", () => {
+            const section = item.dataset.section;
+            loadSocialFeed(section);
+          });
+        });
+
+        // News Feeds: Default Home feed mapping
+        const newsFeedMap = {
           ESPN: "https://www.espn.com/espn/rss/news",
           CBS: "https://rss.app/feeds/oVrPZDHkkJB8bEKG.xml",
           FOX: "https://rss.app/feeds/KzC1hdnt93oattSD.xml",
           Yahoo: "https://rss.app/feeds/3BSRBZ6GJrUbB5PC.xml"
         };
-        Object.entries(feedMap).forEach(([key, url]) => {
+        Object.entries(newsFeedMap).forEach(([key, url]) => {
           fetchFeed(`#feed-${key} .feed-content`, url);
         });
 
-        // Existing custom feeds for other sections…
+        // Existing custom News Feeds
         fetchFeed("#feed-_6gzCeS4YQ4h2adTs .feed-content", "https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml"); // MLB
         fetchFeed("#feed-_ja3fYEA7yigAcmAk .feed-content", "https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml"); // NBA
         fetchFeed("#feed-_iiyR3EPoC5QXMnqt .feed-content", "https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml"); // NFL
@@ -652,7 +640,7 @@
         fetchFeed("#feed-LaLiga .feed-content", "https://rss.app/feeds/_zvRqo1UuuoLB5czl.xml"); // LaLiga
         fetchFeed("#feed-_5c3ZcfSrwvdwdG2Z .feed-content", "https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml"); // NHL
 
-        // Fetch feeds for new News sections
+        // New News Feeds
         fetchFeed("#feed-UFC .feed-content", "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml");
         fetchFeed("#feed-Boxing .feed-content", "https://rss.app/feeds/_7DfbEtxpn8RPNIMf.xml");
         fetchFeed("#feed-NASCARCupSeries .feed-content", "https://rss.app/feeds/_D7Q3jbrHjR3bGj8O.xml");
@@ -667,7 +655,7 @@
         fetchFeed("#feed-MotoGP .feed-content", "https://rss.app/feeds/_4Bpke8POCqxzxfKq.xml");
         fetchFeed("#feed-LPGATour .feed-content", "https://rss.app/feeds/_a4W47htGlhRlO2ju.xml");
 
-        // Existing menu functionality for the News panel remains unchanged…
+        // Menu Functionality for Filters and Section Switching
         let selectedSection = "Home";
         document.querySelectorAll(".menu-filter").forEach(filter => {
           filter.addEventListener("click", () => {
