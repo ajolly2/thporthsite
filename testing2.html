@@ -674,12 +674,12 @@
             <div class="feed-content">Loading PGA Tour feed...</div>
           </div>
         </div>
-        <div id="news-UFC" class="content-section" style="display: none;">
-          <div class="rss-feed" id="feed-UFC">
-            <h4>UFC</h4>
-            <div class="feed-content">Loading UFC feed...</div>
-          </div>
-        </div>
+      <div id="news-UFC" class="content-section" style="display: none;">
+  <div class="rss-feed" id="feed-UFC">
+    <h4>UFC</h4>
+    <div class="feed-content">Loading UFC feed...</div>
+  </div>
+</div>
 
         <div id="news-Boxing" class="content-section" style="display: none;">
           Placeholder content for Boxing (News)
@@ -755,7 +755,6 @@
         NBA: "5RV6ZHeyJhWxORz5",
         NFL: "INJ6Bk4bDkbmuBbD",
         NHL: "pNuN9vyuvzYgmCmy",
-        UFC: "D7Pzjs1eNyeNfRZg", /* ← Added line for UFC social feed */
         UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
         PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
         MLS: "9EAOd7JHtY1IRVUP",
@@ -953,19 +952,13 @@
           "https://rss.app/feeds/_QQsPX3f8GnzYvAXX.xml"
         ); // PGA Tour
 
-        /* NEW: fetch UFC news feed */
-        fetchFeed(
-          "#feed-UFC .feed-content",
-          "https://rss.app/feeds/_YGmr1TjOD0yXmfU1.xml"
-        ); // UFC
-
         // Existing menu functionality
         let selectedSection = "Home";
         document.querySelectorAll(".menu-filter").forEach(filter => {
           filter.addEventListener("click", () => {
             document.getElementById("menuSearch").value = "";
             ["123", "az", "group"].forEach(type => {
-              document.querySelectorAll("#menuList-" + type + "li").forEach(li => {
+              document.querySelectorAll("#menuList-" + type + " li").forEach(li => {
                 li.style.display = "";
               });
             });
@@ -982,11 +975,9 @@
               type === "group" ? "block" : "none";
             const newList = document.getElementById("menuList-" + type);
             if (newList) {
-              newList
-                .querySelectorAll("li[data-section]")
-                .forEach(li => {
-                  li.classList.toggle("selected", li.dataset.section === selectedSection);
-                });
+              newList.querySelectorAll("li[data-section]").forEach(li => {
+                li.classList.toggle("selected", li.dataset.section === selectedSection);
+              });
             }
           });
         });
@@ -1009,12 +1000,12 @@
               .forEach(li => li.classList.remove("selected"));
             item.classList.add("selected");
             const section = item.dataset.section;
-            document
-              .querySelectorAll(".news .content-section")
-              .forEach(s => (s.style.display = "none"));
-            document
-              .querySelectorAll(".social .content-section")
-              .forEach(s => (s.style.display = "none"));
+            document.querySelectorAll(".news .content-section").forEach(
+              s => (s.style.display = "none")
+            );
+            document.querySelectorAll(".social .content-section").forEach(
+              s => (s.style.display = "none")
+            );
             const news = document.getElementById("news-" + section);
             const social = document.getElementById("social-" + section);
             if (news) {
@@ -1090,6 +1081,7 @@
     </script>
   </body>
 </html>
+
 
 
 
