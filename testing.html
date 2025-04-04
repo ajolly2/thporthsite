@@ -681,81 +681,45 @@
   </div>
 </div>
 
-       <!-- New News Feed Sections -->
-<div id="news-Boxing" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-Boxing">
-    <h4>Boxing</h4>
-    <div class="feed-content">Loading Boxing feed...</div>
-  </div>
-</div>
-<div id="news-NASCARCupSeries" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-NASCARCupSeries">
-    <h4>NASCAR Cup Series</h4>
-    <div class="feed-content">Loading NASCAR Cup Series feed...</div>
-  </div>
-</div>
-<div id="news-Tennis" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-Tennis">
-    <h4>Tennis</h4>
-    <div class="feed-content">Loading Tennis feed...</div>
-  </div>
-</div>
-<div id="news-WNBA" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-WNBA">
-    <h4>WNBA</h4>
-    <div class="feed-content">Loading WNBA feed...</div>
-  </div>
-</div>
-<div id="news-LIVGolf" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-LIVGolf">
-    <h4>LIV Golf</h4>
-    <div class="feed-content">Loading LIV Golf feed...</div>
-  </div>
-</div>
-<div id="news-IndyCar" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-IndyCar">
-    <h4>IndyCar</h4>
-    <div class="feed-content">Loading IndyCar feed...</div>
-  </div>
-</div>
-<div id="news-NCAAM" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-NCAAM">
-    <h4>NCAAM</h4>
-    <div class="feed-content">Loading NCAAM feed...</div>
-  </div>
-</div>
-<div id="news-NCAAW" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-NCAAW">
-    <h4>NCAAW</h4>
-    <div class="feed-content">Loading NCAAW feed...</div>
-  </div>
-</div>
-<div id="news-NCAABaseball" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-NCAABaseball">
-    <h4>NCAA Baseball</h4>
-    <div class="feed-content">Loading NCAA Baseball feed...</div>
-  </div>
-</div>
-<div id="news-NCAASoftball" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-NCAASoftball">
-    <h4>NCAA Softball</h4>
-    <div class="feed-content">Loading NCAA Softball feed...</div>
-  </div>
-</div>
-<div id="news-MotoGP" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-MotoGP">
-    <h4>MotoGP</h4>
-    <div class="feed-content">Loading MotoGP feed...</div>
-  </div>
-</div>
-<div id="news-LPGATour" class="content-section" style="display: none;">
-  <div class="rss-feed" id="feed-LPGATour">
-    <h4>LPGA Tour</h4>
-    <div class="feed-content">Loading LPGA Tour feed...</div>
-  </div>
-</div>
-
-
+        <div id="news-Boxing" class="content-section" style="display: none;">
+          Placeholder content for Boxing (News)
+        </div>
+        <div id="news-NASCARCupSeries" class="content-section" style="display: none;">
+          Placeholder content for NASCAR Cup Series (News)
+        </div>
+        <div id="news-Tennis" class="content-section" style="display: none;">
+          Placeholder content for Tennis (News)
+        </div>
+        <div id="news-WNBA" class="content-section" style="display: none;">
+          Placeholder content for WNBA (News)
+        </div>
+        <div id="news-LIVGolf" class="content-section" style="display: none;">
+          Placeholder content for LIV Golf (News)
+        </div>
+        <div id="news-IndyCar" class="content-section" style="display: none;">
+          Placeholder content for IndyCar (News)
+        </div>
+        <div id="news-NCAAM" class="content-section" style="display: none;">
+          Placeholder content for NCAAM (News)
+        </div>
+        <div id="news-NCAAW" class="content-section" style="display: none;">
+          Placeholder content for NCAAW (News)
+        </div>
+        <div id="news-UFL" class="content-section" style="display: none;">
+          Placeholder content for UFL (News)
+        </div>
+        <div id="news-NCAABaseball" class="content-section" style="display: none;">
+          Placeholder content for NCAA Baseball (News)
+        </div>
+        <div id="news-NCAASoftball" class="content-section" style="display: none;">
+          Placeholder content for NCAA Softball (News)
+        </div>
+        <div id="news-MotoGP" class="content-section" style="display: none;">
+          Placeholder content for MotoGP (News)
+        </div>
+        <div id="news-LPGATour" class="content-section" style="display: none;">
+          Placeholder content for LPGA Tour (News)
+        </div>
         <div id="news-TrackAndField" class="content-section" style="display: none;">
           Placeholder content for Track &amp; Field (News)
         </div>
@@ -783,116 +747,57 @@
     <script src="https://widget.rss.app/v1/feed.js" async></script>
 
     <!-- Lazy Load Social Feeds Script -->
-<script>
-  /***********************
-   * Social Feeds Loader *
-   ***********************/
-  // Social feed mapping (keys must match your menu items’ data-section values)
-  const rssSocialFeeds = {
-    Home: "_W0ZzValCUhv9Q88Y",
-    MLB: "_wcNmb7Pr9SpM8BQ4",
-    NBA: "5RV6ZHeyJhWxORz5",
-    NFL: "INJ6Bk4bDkbmuBbD",
-    NHL: "pNuN9vyuvzYgmCmy",
-    UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
-    PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
-    MLS: "9EAOd7JHtY1IRVUP",
-    Bundesliga: "YPjYmfSS1NyBDka8",
-    LaLiga: "iatyOkXWhSWdum53",
-    SerieA: "zbTyEkE5gjqLEv3s",
-    Soccer: "YhR2LGbhScpKNkzd",
-    FACup: "2zqHVQtHCIa3PVME",
-    LigaMX: "ExlLtrY7vEkY58OK",
-    NWSL: "YuC1qAhWubEURaom",
-    Ligue1: "WMDUyBIu1k0aSUYq",
-    UEFAEuropaLeague: "7ONIKeDn4stczUat",
-    UEFAConferenceLeague: "F5l3pTQwaGkBrFJk",
-    FormulaOne: "s7r6yAgtrA3k2dJw",
-    NCAAF: "AnA5shmkBJ7gdzCs",
-    PGATour: "c2yYJn0ed57eix3y"
-    // If you have additional social feeds (e.g., Boxing, NASCARCupSeries, etc.), add them here:
-    Boxing: "E4QHg9gnRHekN0eL",
-    NASCARCupSeries: "aIpvGxQaOiSfwADb",
-    Tennis: "InsXma0Pwpks5ZgB",
-    WNBA: "Am6lI6WHRaAxHmbL",
-    LIVGolf: "xTe6w6kt4LL4Hi8v",
-    IndyCar: "0J2bXOqqSpbcTt1Y",
-    NCAAM: "Zd1KfPkoPaqAlIxp",
-    NCAAW: "Aozk9D13FRvOiR16",
-    NCAABaseball: "iJ2vCYtgsHm9IR5d",
-    NCAASoftball: "ON2eWO5ApxIBiGYV",
-    MotoGP: "CKPWivTATHSyhDSN",
-    LPGATour: "RsLnkbshlMSpf2b7"
-  };
+    <script>
+      // Updated rssFeeds: For UEFAChampionsLeague and PremierLeague, we use an array of feed IDs
+      const rssFeeds = {
+        Home: "_W0ZzValCUhv9Q88Y",
+        MLB: "_wcNmb7Pr9SpM8BQ4",
+        NBA: "5RV6ZHeyJhWxORz5",
+        NFL: "INJ6Bk4bDkbmuBbD",
+        NHL: "pNuN9vyuvzYgmCmy",
+        UEFAChampionsLeague: ["_UEFASocialFeed", "fJDD9RMqob2qCjwA"],
+        PremierLeague: ["_PremierSocialFeed", "neXmnwbubK21ZWYF"],
+        MLS: "9EAOd7JHtY1IRVUP",
+        Bundesliga: "YPjYmfSS1NyBDka8",
+        LaLiga: "iatyOkXWhSWdum53",
+        SerieA: "zbTyEkE5gjqLEv3s",
+        Soccer: "YhR2LGbhScpKNkzd",
+        FACup: "2zqHVQtHCIa3PVME",
+        LigaMX: "ExlLtrY7vEkY58OK",
+        NWSL: "YuC1qAhWubEURaom",
+        Ligue1: "WMDUyBIu1k0aSUYq",
+        UEFAEuropaLeague: "7ONIKeDn4stczUat",
+        UEFAConferenceLeague: "F5l3pTQwaGkBrFJk",
+        FormulaOne: "s7r6yAgtrA3k2dJw",
+        NCAAF: "AnA5shmkBJ7gdzCs",
+        PGATour: "c2yYJn0ed57eix3y"
+      };
 
-  let currentSocialFeed = null;
-  function loadSocialFeed(section) {
-    const container = document.getElementById("social-feed-container");
-    if (currentSocialFeed === section) return;
-    container.innerHTML = "";
-    const feedId = rssSocialFeeds[section];
-    if (feedId) {
-      if (Array.isArray(feedId)) {
-        feedId.forEach(id => {
-          const feedTag = document.createElement("rssapp-feed");
-          feedTag.setAttribute("data-feed-id", id);
-          container.appendChild(feedTag);
-        });
-      } else {
-        const feedTag = document.createElement("rssapp-feed");
-        feedTag.setAttribute("data-feed-id", feedId);
-        container.appendChild(feedTag);
-      }
-    } else {
-      container.innerHTML =
-        "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
-    }
-    currentSocialFeed = section;
-  }
+      let currentFeed = null;
 
-  /***********************
-   * News Feeds Fetcher  *
-   ***********************/
-  function fetchFeed(containerSelector, feedUrl) {
-    const container = document.querySelector(containerSelector);
-    if (!container) return;
-    fetch(feedUrl)
-      .then(res => res.text())
-      .then(str => {
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(str, "application/xml");
-        const items = Array.from(xml.querySelectorAll("item"));
-        if (items.length > 0) {
-          const ul = document.createElement("ul");
-          items.forEach(item => {
-            const title = item.querySelector("title") ? item.querySelector("title").textContent : "No title";
-            const link = item.querySelector("link") ? item.querySelector("link").textContent : "#";
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = link;
-            a.target = "_blank";
-            a.textContent = title;
-            li.appendChild(a);
-            ul.appendChild(li);
-          });
-          container.innerHTML = "";
-          container.appendChild(ul);
-          ul.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", () => {
-              link.classList.add("clicked");
+      function loadSocialFeed(section) {
+        const container = document.getElementById("social-feed-container");
+        if (currentFeed === section) return;
+        container.innerHTML = "";
+        const feedId = rssFeeds[section];
+        if (feedId) {
+          if (Array.isArray(feedId)) {
+            feedId.forEach(id => {
+              const feedTag = document.createElement("rssapp-feed");
+              feedTag.setAttribute("id", id);
+              container.appendChild(feedTag);
             });
-          });
+          } else {
+            const feedTag = document.createElement("rssapp-feed");
+            feedTag.setAttribute("id", feedId);
+            container.appendChild(feedTag);
+          }
         } else {
-          container.innerHTML = "<p>No items found.</p>";
+          container.innerHTML =
+            "<div style='padding: 10px; font-size: 12px;'>No social feed available for this section.</div>";
         }
-      })
-      .catch(error => {
-        console.error("Error loading feed:", error);
-        container.innerHTML = "<p>Error loading feed.</p>";
-      });
-  }
-
-  
+        currentFeed = section;
+      }
 
       document.addEventListener("DOMContentLoaded", () => {
         // Load default feed (Home) on page load
@@ -1046,20 +951,6 @@
           "#feed-PGATour .feed-content",
           "https://rss.app/feeds/_QQsPX3f8GnzYvAXX.xml"
         ); // PGA Tour
-fetchFeed("#feed-Boxing .feed-content", "https://rss.app/feeds/_7DfbEtxpn8RPNIMf.xml");
-fetchFeed("#feed-NASCARCupSeries .feed-content", "https://rss.app/feeds/_D7Q3jbrHjR3bGj8O.xml");
-fetchFeed("#feed-Tennis .feed-content", "https://rss.app/feeds/_tGSXi2957CegL2kC.xml");
-fetchFeed("#feed-WNBA .feed-content", "https://rss.app/feeds/_JsIgbwln4EnDHpSE.xml");
-fetchFeed("#feed-LIVGolf .feed-content", "https://rss.app/feeds/_s7tH2abPc7ZQXhLp.xml");
-fetchFeed("#feed-IndyCar .feed-content", "https://rss.app/feeds/_TqIJuTCX0SmFe0lM.xml");
-fetchFeed("#feed-NCAAM .feed-content", "https://rss.app/feeds/_va6EQaZAxOx6z8xR.xml");
-fetchFeed("#feed-NCAAW .feed-content", "https://rss.app/feeds/_2P4NcD95YPwU8T51.xml");
-fetchFeed("#feed-NCAABaseball .feed-content", "https://rss.app/feeds/_q2SYr186Ed7j8jud.xml");
-fetchFeed("#feed-NCAASoftball .feed-content", "https://rss.app/feeds/_y4zf68Y0lK5bkT47.xml");
-fetchFeed("#feed-MotoGP .feed-content", "https://rss.app/feeds/_4Bpke8POCqxzxfKq.xml");
-fetchFeed("#feed-LPGATour .feed-content", "https://rss.app/feeds/_a4W47htGlhRlO2ju.xml");
-
-
 
         // Existing menu functionality
         let selectedSection = "Home";
@@ -1190,7 +1081,6 @@ fetchFeed("#feed-LPGATour .feed-content", "https://rss.app/feeds/_a4W47htGlhRlO2
     </script>
   </body>
 </html>
-
 
 
 
