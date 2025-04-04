@@ -1208,6 +1208,18 @@ fetchFeed(
           });
         });
       });
+      function showSecondSocialSection(section) {
+  document.querySelectorAll("#second-social-panel .content-section").forEach(el => {
+    el.style.display = "none";
+  });
+  const target = document.getElementById("social2-" + section);
+  if (target) {
+    target.style.display = "block";
+  }
+}
+
+// And when NBA is selected, call:
+showSecondSocialSection("NBA");
     </script>
   </body>
 </html>
