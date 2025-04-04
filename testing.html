@@ -797,25 +797,22 @@
           <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
         </div>
       </div>
-    </div>
-
-    <!-- Duplicate Divider -->
+      <!-- DIVIDER BETWEEN FIRST AND SECOND SOCIAL PANEL -->
 <div class="divider"></div>
 
 <!-- SECOND SOCIAL PANEL -->
-<div class="column social">
+<div class="column social" style="padding: 0; margin: 0;">
   <div
     id="socialHeader2"
     style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
   >
     Social 2
   </div>
-  <!-- Second dynamic container for social feeds -->
   <div id="social-feed-container-2">
     <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
   </div>
 </div>
-
+    </div>
 
     <!-- SINGLE RSS.app script load (only once) -->
     <script src="https://widget.rss.app/v1/feed.js" async></script>
@@ -1185,31 +1182,6 @@ fetchFeed(
           });
         });
       });
-
-      <script>
-  function loadSecondSocialFeed(section) {
-    const container = document.getElementById("social-feed-container-2");
-    container.innerHTML = "";
-    const feedId = rssFeeds[section];
-    if (feedId) {
-      if (Array.isArray(feedId)) {
-        feedId.forEach(id => {
-          const feedTag = document.createElement("rssapp-feed");
-          feedTag.setAttribute("id", id);
-          container.appendChild(feedTag);
-        });
-      } else {
-        const feedTag = document.createElement("rssapp-feed");
-        feedTag.setAttribute("id", feedId);
-        container.appendChild(feedTag);
-      }
-    } else {
-      container.innerHTML =
-        "<div style='padding: 10px; font-size: 12px;'>No social feed available.</div>";
-    }
-  }
-</script>
-
     </script>
   </body>
 </html>
