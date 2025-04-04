@@ -252,7 +252,7 @@
             <li data-section="LPGATour">LPGA Tour</li>
           </ul>
           <!-- A‑Z FILTER LIST (Complete) -->
-        <ul id="menuList-az" style="display: none;">
+          <ul id="menuList-az" style="display: none;">
             <li data-section="Home">Home</li>
             <li data-section="AFCChampionsLeagueElite">AFC Champions League Elite</li>
             <li data-section="AFL">AFL</li>
@@ -498,9 +498,162 @@
               <li class="spacer-line"></li>
             </ul>
           </ul>
+          <!-- GROUP FILTER LIST -->
+          <ul id="menuList-group" style="display: none;">
+            <li data-section="Home"><strong>Home</strong></li>
+            <li class="spacer-line"></li>
+            <li><strong>FOOTBALL</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="NFL">NFL</li>
+              <li data-section="NCAAF">NCAAF</li>
+              <li data-section="UFL">UFL</li>
+              <li data-section="CFL">CFL</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>BASEBALL</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="MLB">MLB</li>
+              <li data-section="NCAABaseball">NCAA Baseball</li>
+              <li data-section="LittleLeagueWorldSeries">Little League World Series</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>BASKETBALL</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="NBA">NBA</li>
+              <li data-section="WNBA">WNBA</li>
+              <li data-section="NCAAM">NCAAM</li>
+              <li data-section="NCAAW">NCAAW</li>
+              <li data-section="NBAGLeague">NBA G League</li>
+              <li data-section="EuroLeague">EuroLeague</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>SOCCER</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="UEFAChampionsLeague">UEFA Champions League</li>
+              <li data-section="PremierLeague">Premier League</li>
+              <li data-section="MLS">MLS</li>
+              <li data-section="LaLiga">LaLiga</li>
+              <li data-section="SerieA">Serie A</li>
+              <li data-section="Bundesliga">Bundesliga</li>
+              <li data-section="FACup">FA Cup</li>
+              <li data-section="LigaMX">Liga MX</li>
+              <li data-section="NWSL">NWSL</li>
+              <li data-section="Ligue1">Ligue 1</li>
+              <li data-section="UEFAEuropaLeague">UEFA Europa League</li>
+              <li data-section="UEFAConferenceLeague">UEFA Conference League</li>
+              <li class="soccer-more-toggle" style="cursor: pointer; color: #91b3a2;" onclick="toggleSoccerMore()">More…</li>
+            </ul>
+            <div id="soccer-more" style="display: none;">
+              <ul style="padding-left: 10px;">
+                <li data-section="CarabaoCup">Carabao Cup</li>
+                <li data-section="UEFANationsLeague">UEFA Nations League</li>
+                <li data-section="CONCACAFNationsLeague">Concacaf Nations League</li>
+                <li data-section="SaudiProLeague">Saudi Pro League</li>
+                <li data-section="EFLChampionship">EFL Championship</li>
+                <li data-section="CopaDelRey">Copa del Rey</li>
+                <li data-section="FIFAClubWorldCup">FIFA Club World Cup</li>
+                <li data-section="Brasileirao">Brasileirão</li>
+                <li data-section="AFCChampionsLeagueElite">AFC Champions League Elite</li>
+                <li data-section="CopaLibertadores">Copa Libertadores</li>
+                <li data-section="CONCACAFGoldCup">Concacaf Gold Cup</li>
+                <li data-section="CONCACAFWGoldCup">Concacaf W Gold Cup</li>
+                <li data-section="CopaSudamericana">Copa Sudamericana</li>
+                <li data-section="CanadianPremierLeague">Canadian Premier League</li>
+                <li data-section="CoppaItalia">Coppa Italia</li>
+                <li data-section="DFBPokal">DFB-Pokal</li>
+                <li data-section="ScottishPremiership">Scottish Premiership</li>
+                <li data-section="UEFAWChampionsLeague">UEFA W Champions League</li>
+                <li data-section="CAFChampionsLeague">CAF Champions League</li>
+                <li data-section="AfricaCupOfNations">Africa Cup of Nations</li>
+                <li data-section="CONCACAFChampionsCup">Concacaf Champions Cup</li>
+                <li data-section="ArgentinePrimera">Argentine Primera</li>
+                <li data-section="BelgianProLeague">Belgian Pro League</li>
+                <li data-section="WomensSuperLeague">Women’s Super League</li>
+                <li data-section="LigaPortugal">Liga Portugal</li>
+                <li data-section="USOpenCup">U.S. Open Cup</li>
+              </ul>
+            </div>
+            <li class="spacer-line"></li>
+            <li><strong>HOCKEY</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="NHL">NHL</li>
+              <li data-section="NCAAMensHockey">NCAA Men’s Hockey</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>MOTORSPORTS</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="FormulaOne">Formula 1</li>
+              <li data-section="NASCARCupSeries">NASCAR Cup Series</li>
+              <li data-section="IndyCar">IndyCar</li>
+              <li data-section="MotoGP">MotoGP</li>
+              <li data-section="NHRA">NHRA</li>
+              <li data-section="NASCARXfinitySeries">NASCAR Xfinity Series</li>
+              <li data-section="NASCARTruckSeries">NASCAR Truck Series</li>
+              <li data-section="Formula2">Formula 2</li>
+              <li data-section="Formula3">Formula 3</li>
+              <li data-section="ARCAMenards">ARCA Menards</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>GOLF</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="PGATour">PGA Tour</li>
+              <li data-section="LIVGolf">LIV Golf</li>
+              <li data-section="TGL">TGL</li>
+              <li data-section="LPGATour">LPGA Tour</li>
+              <li data-section="PGAChampions">PGA Champions</li>
+              <li data-section="DPWorldTour">DP World Tour</li>
+              <li data-section="KornFerryTour">Korn Ferry Tour</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>FIGHTING</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="UFC">UFC</li>
+              <li data-section="Boxing">Boxing</li>
+              <li data-section="MMA">MMA</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>TENNIS</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="ATP">ATP</li>
+              <li data-section="WTA">WTA</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>SOFTBALL</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="NCAASoftball">NCAA Softball</li>
+              <li data-section="LittleLeagueSoftballWorldSeries">Little League Softball</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>RUGBY</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="RugbyUnion">Rugby Union</li>
+              <li data-section="PremiershipRugby">Premiership Rugby</li>
+              <li data-section="MajorLeagueRugby">Major League Rugby</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>CRICKET</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="BigBashLeague">Big Bash League</li>
+            </ul>
+            <li class="spacer-line"></li>
+            <li><strong>OTHER</strong></li>
+            <ul style="padding-left: 10px;">
+              <li data-section="AFL">AFL</li>
+              <li data-section="Cycling">Cycling</li>
+              <li data-section="FigureSkating">Figure Skating</li>
+              <li data-section="Gymnastics">Gymnastics</li>
+              <li data-section="HorseRacing">Horse Racing</li>
+              <li data-section="Olympics">Olympics</li>
+              <li data-section="TrackAndField">Track &amp; Field</li>
+              <li data-section="Volleyball">Volleyball</li>
+              <li data-section="XGames">X Games</li>
+              <li class="spacer-line"></li>
+              <li class="spacer-line"></li>
+              <li class="spacer-line"></li>
+            </ul>
+          </ul>
         </div>
       </div>
-
 
       <!-- DIVIDER BETWEEN MAIN MENU AND NEWS PANEL -->
       <div class="divider"></div>
@@ -532,50 +685,50 @@
           </div>
           <div class="rss-feed" id="feed-CBS">
             <h4>CBS</h4>
-            <div class="feed-content"> CBS feed...</div>
+            <div class="feed-content">Loading CBS feed...</div>
           </div>
           <div class="rss-feed" id="feed-FOX">
             <h4>FOX</h4>
-            <div class="feed-content"> FOX feed...</div>
+            <div class="feed-content">Loading FOX feed...</div>
           </div>
           <div class="rss-feed" id="feed-Yahoo">
             <h4>Yahoo</h4>
-            <div class="feed-content"> Yahoo feed...</div>
+            <div class="feed-content">Loading Yahoo feed...</div>
           </div>
         </div>
         <!-- MLB News Section -->
         <div id="news-MLB" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_6gzCeS4YQ4h2adTs">
             <h4>MLB</h4>
-            <div class="feed-content"> MLB feed...</div>
+            <div class="feed-content">Loading MLB feed...</div>
           </div>
         </div>
         <!-- NBA News Section -->
         <div id="news-NBA" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_ja3fYEA7yigAcmAk">
             <h4>NBA</h4>
-            <div class="feed-content"> NBA feed...</div>
+            <div class="feed-content">Loading NBA feed...</div>
           </div>
         </div>
         <!-- NFL News Section -->
         <div id="news-NFL" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_iiyR3EPoC5QXMnqt">
             <h4>NFL</h4>
-            <div class="feed-content"> NFL feed...</div>
+            <div class="feed-content">Loading NFL feed...</div>
           </div>
         </div>
         <!-- NHL News Section -->
         <div id="news-NHL" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_5c3ZcfSrwvdwdG2Z">
             <h4>NHL</h4>
-            <div class="feed-content"> NHL feed...</div>
+            <div class="feed-content">Loading NHL feed...</div>
           </div>
         </div>
         <!-- MLS News Section -->
         <div id="news-MLS" class="content-section" style="display: none;">
           <div class="rss-feed" id="feed-_pBOHW7eyjbGkaiZq">
             <h4>MLS</h4>
-            <div class="feed-content"> MLS feed...</div>
+            <div class="feed-content">Loading MLS feed...</div>
           </div>
         </div>
         <!-- Premier League News Section -->
@@ -781,10 +934,10 @@
         </div>
       </div>
 
-      <!-- DIVIDER BETWEEN NEWS PANEL AND SOCIAL PANEL -->
+      <!-- DIVIDER BETWEEN NEWS PANEL AND FIRST SOCIAL PANEL -->
       <div class="divider"></div>
 
-      <!-- SOCIAL PANEL -->
+      <!-- SOCIAL PANEL (First Social Panel) -->
       <div class="column social" style="padding: 0; margin: 0;">
         <div
           id="socialHeader"
@@ -797,21 +950,45 @@
           <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
         </div>
       </div>
-      <!-- DIVIDER BETWEEN FIRST AND SECOND SOCIAL PANEL -->
-<div class="divider"></div>
 
-<!-- SECOND SOCIAL PANEL -->
-<div class="column social" style="padding: 0; margin: 0;">
-  <div
-    id="socialHeader2"
-    style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
-  >
-    Social 2
-  </div>
-  <div id="social-feed-container-2">
-    <div style="padding: 10px; font-size: 12px;">Let's just put some shit in here</div>
-  </div>
-</div>
+      <!-- DIVIDER BETWEEN FIRST AND SECOND SOCIAL PANEL -->
+      <div class="divider"></div>
+
+      <!-- SECOND SOCIAL PANEL (Blank, with content areas for each main menu list item) -->
+      <div class="column social" style="padding: 0; margin: 0;">
+        <div
+          id="socialHeader2"
+          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+        >
+          Social 2
+        </div>
+        <!-- Container for second social content areas -->
+        <div id="second-social-panel">
+          <div id="social2-Home" class="content-section" style="display: none;"></div>
+          <div id="social2-NFL" class="content-section" style="display: none;"></div>
+          <div id="social2-NBA" class="content-section" style="display: none;"></div>
+          <div id="social2-MLB" class="content-section" style="display: none;"></div>
+          <div id="social2-NHL" class="content-section" style="display: none;"></div>
+          <div id="social2-Soccer" class="content-section" style="display: none;"></div>
+          <div id="social2-FormulaOne" class="content-section" style="display: none;"></div>
+          <div id="social2-NCAAF" class="content-section" style="display: none;"></div>
+          <div id="social2-PGATour" class="content-section" style="display: none;"></div>
+          <div id="social2-UFC" class="content-section" style="display: none;"></div>
+          <div id="social2-Boxing" class="content-section" style="display: none;"></div>
+          <div id="social2-NASCARCupSeries" class="content-section" style="display: none;"></div>
+          <div id="social2-Tennis" class="content-section" style="display: none;"></div>
+          <div id="social2-WNBA" class="content-section" style="display: none;"></div>
+          <div id="social2-LIVGolf" class="content-section" style="display: none;"></div>
+          <div id="social2-IndyCar" class="content-section" style="display: none;"></div>
+          <div id="social2-NCAAM" class="content-section" style="display: none;"></div>
+          <div id="social2-NCAAW" class="content-section" style="display: none;"></div>
+          <div id="social2-UFL" class="content-section" style="display: none;"></div>
+          <div id="social2-NCAABaseball" class="content-section" style="display: none;"></div>
+          <div id="social2-NCAASoftball" class="content-section" style="display: none;"></div>
+          <div id="social2-MotoGP" class="content-section" style="display: none;"></div>
+          <div id="social2-LPGATour" class="content-section" style="display: none;"></div>
+        </div>
+      </div>
     </div>
 
     <!-- SINGLE RSS.app script load (only once) -->
@@ -883,15 +1060,31 @@
         currentFeed = section;
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // Load default feed (Home) on page load
-        loadSocialFeed("Home");
+      // Function to show the corresponding second social section
+      function showSecondSocialSection(section) {
+        // Hide all second social sections
+        document.querySelectorAll("#second-social-panel .content-section").forEach(el => {
+          el.style.display = "none";
+        });
+        // Show the section corresponding to the clicked main menu item (if it exists)
+        const target = document.getElementById("social2-" + section);
+        if (target) {
+          target.style.display = "block";
+        }
+      }
 
-        // Bind lazy loading to menu item clicks
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load default feed (Home) on page load for the first social panel
+        loadSocialFeed("Home");
+        // Also show default (blank) second social section for Home
+        showSecondSocialSection("Home");
+
+        // Bind lazy loading to menu item clicks for first social panel
         document.querySelectorAll("#menuList li[data-section]").forEach(item => {
           item.addEventListener("click", () => {
             const section = item.dataset.section;
             loadSocialFeed(section);
+            showSecondSocialSection(section);
           });
         });
       });
@@ -1046,16 +1239,14 @@
           "#feed-LPGATour .feed-content",
           "https://rss.app/feeds/_a4W47htGlhRlO2ju.xml"
         ); // LPGA Tour
-fetchFeed(
-  "#feed-NCAAF .feed-content",
-  "https://rss.app/feeds/_AnA5shmkBJ7gdzCs.xml"
-);
-
-fetchFeed(
-  "#feed-PGATour .feed-content",
-  "https://rss.app/feeds/_c2yYJn0ed57eix3y.xml"
-);
-
+        fetchFeed(
+          "#feed-NCAAF .feed-content",
+          "https://rss.app/feeds/_AnA5shmkBJ7gdzCs.xml"
+        );
+        fetchFeed(
+          "#feed-PGATour .feed-content",
+          "https://rss.app/feeds/_c2yYJn0ed57eix3y.xml"
+        );
 
         // Existing menu functionality
         let selectedSection = "Home";
@@ -1125,6 +1316,8 @@ fetchFeed(
               }
             }
             if (social) social.style.display = "block";
+            // Show the corresponding section in the second social panel
+            showSecondSocialSection(section);
           });
         });
 
@@ -1185,10 +1378,3 @@ fetchFeed(
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
