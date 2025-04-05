@@ -801,18 +801,43 @@
       <div class="divider"></div>
 
       <!-- MEDIA CENTER -->
-      <div class="column social" style="padding: 0; margin: 0;">
-        <div
-          id="socialHeader"
-          style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
-        >
-          Media Center
-        </div>
-        <!-- Single dynamic container for social feeds -->
-        <div id="social-feed-container">
-          <div style="padding: 10px; font-size: 12px;">Loading feed...</div>
-        </div>
-      </div>
+     <div class="column media-center" style="padding: 0; margin: 0; flex: 0 0 250px; background-color: black">
+  <div
+    id="socialHeader2"
+    style="position: sticky; top: 0; width: 100%; height: 18px; background-color: #c4c4c4; font-family: Helvetica, Arial, sans-serif; font-size: 10px; display: flex; align-items: center; padding-left: 10px; z-index: 11;"
+  >
+    Media Center
+  </div>
+  <!-- Container for second social content areas -->
+  <div id="second-social-panel">
+    <div id="social2-Home" class="content-section" style="display: none;"></div>
+    <div id="social2-NFL" class="content-section" style="display: none;"></div>
+    <div id="social2-NBA" class="content-section" style="display: none;">
+    <rssapp-feed id="4FRj3PbqYMYOxLiq"></rssapp-feed><script src="https://widget.rss.app/v1/feed.js" type="text/javascript" async></script>
+    </div>
+    <div id="social2-MLB" class="content-section" style="display: none;"></div>
+    <div id="social2-NHL" class="content-section" style="display: none;"></div>
+    <div id="social2-Soccer" class="content-section" style="display: none;"></div>
+    <div id="social2-FormulaOne" class="content-section" style="display: none;"></div>
+    <div id="social2-NCAAF" class="content-section" style="display: none;"></div>
+    <div id="social2-PGATour" class="content-section" style="display: none;"></div>
+    <div id="social2-UFC" class="content-section" style="display: none;"></div>
+    <div id="social2-Boxing" class="content-section" style="display: none;"></div>
+    <div id="social2-NASCARCupSeries" class="content-section" style="display: none;"></div>
+    <div id="social2-Tennis" class="content-section" style="display: none;"></div>
+    <div id="social2-WNBA" class="content-section" style="display: none;"></div>
+    <div id="social2-LIVGolf" class="content-section" style="display: none;"></div>
+    <div id="social2-IndyCar" class="content-section" style="display: none;"></div>
+    <div id="social2-NCAAM" class="content-section" style="display: none;"></div>
+    <div id="social2-NCAAW" class="content-section" style="display: none;"></div>
+    <div id="social2-UFL" class="content-section" style="display: none;"></div>
+    <div id="social2-NCAABaseball" class="content-section" style="display: none;"></div>
+    <div id="social2-NCAASoftball" class="content-section" style="display: none;"></div>
+    <div id="social2-MotoGP" class="content-section" style="display: none;"></div>
+    <div id="social2-LPGATour" class="content-section" style="display: none;"></div>
+  </div>
+</div>
+
     </div>
 
     <!-- SINGLE RSS.app script load (only once) -->
@@ -1051,12 +1076,38 @@ fetchFeed(
   "#feed-NCAAF .feed-content",
   "https://rss.app/feeds/_e8BTSPZYg61J9CYu.xml"
 );
-
 fetchFeed(
   "#feed-PGATour .feed-content",
   "https://rss.app/feeds/_QQsPX3f8GnzYvAXX.xml"
 );
-
+        fetchFeed(
+  "#feed-FACup .feed-content",
+  "https://rss.app/feeds/Wlg6SgkaP1M71ZJK.xml"
+);
+              fetchFeed(
+  "#feed-LigaMX .feed-content",
+  "https://rss.app/feeds/_JgpA2OqGGC8IrApe.xml"
+);
+      fetchFeed(
+  "#feed-NWSL .feed-content",
+  "https://rss.app/feeds/_1kbC9b791rPZgjg6.xml"
+);
+           fetchFeed(
+  "#feed-FormulaOne .feed-content",
+  "https://rss.app/feeds/_69qKKrngeWZusxVz.xml"
+);
+              fetchFeed(
+  "#feed-Ligue1 .feed-content",
+  "https://rss.app/feeds/_9nS7hLmB3aUlWcjH.xml"
+);
+                fetchFeed(
+  "#feed-UEFAEuropaLeague .feed-content",
+  "https://rss.app/feeds/_Op8jopGsYny0gt0e.xml"
+);
+                fetchFeed(
+  "#feed-UEFAConferenceLeague .feed-content",
+  "https://rss.app/feeds/_BjsIqdRuSa1z3U9p.xml"
+);
 
         // Existing menu functionality
         let selectedSection = "Home";
@@ -1109,9 +1160,8 @@ fetchFeed(
             document.querySelectorAll(".news .content-section").forEach(
               s => (s.style.display = "none")
             );
-            document.querySelectorAll(".social .content-section").forEach(
-              s => (s.style.display = "none")
-            );
+            document.querySelectorAll("#social-feed-container .content-section").forEach(s => s.style.display = "none");
+
             const news = document.getElementById("news-" + section);
             const social = document.getElementById("social-" + section);
             if (news) {
@@ -1183,13 +1233,26 @@ fetchFeed(
           });
         });
       });
+     function showSecondSocialSection(section) {
+  document.querySelectorAll("#second-social-panel .content-section").forEach(el => {
+    el.style.display = "none";
+  });
+  const target = document.getElementById("social2-" + section);
+  if (target) {
+    target.style.display = "block";
+  }
+}
+
+// When a menu item is clicked:
+document.querySelectorAll("#menuList li[data-section]").forEach(item => {
+  item.addEventListener("click", () => {
+    const section = item.dataset.section; // should be "NBA" for NBA
+    showSecondSocialSection(section);
+  });
+});
     </script>
   </body>
-</html>
-
-
-
-
+</html> 
 
 
 
