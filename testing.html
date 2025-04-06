@@ -17,7 +17,7 @@
         padding: 0;
         height: 100%;
         font-family: Arial, sans-serif;
-        background-color: #fff;
+        background-color: #151515;
         color: #000;
       }
       ul,
@@ -142,6 +142,11 @@
       .nested li {
         margin-left: 15px;
       }
+      #outer-wrapper {
+  max-width: 1403px; /* adjust based on your layout's total width */
+  margin: 0 auto;    /* centers the wrapper horizontally */
+  background-color: #fff; /* or leave it transparent if you want inner panel backgrounds to show */
+}
       #newsSubMenu {
         position: sticky;
         top: 0;
@@ -191,6 +196,8 @@
     </style>
   </head>
   <body>
+      <div id="outer-wrapper">
+    <div class="container">
     <div id="topBar"></div>
     <div id="topDivider"></div>
     <div class="container">
@@ -878,6 +885,8 @@
   </div>
 
     </div>
+      </div>
+      </div>
 
     <!-- SINGLE RSS.app script load (only once) -->
     <script src="https://widget.rss.app/v1/feed.js" async></script>
