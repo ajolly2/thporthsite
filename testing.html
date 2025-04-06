@@ -31,13 +31,15 @@
       }
       /* Top Bar */
       #topBar {
-        width: 100%;
+         max-width: 1200px; /* same as .container's desired width */
+  margin: 0 auto;
         height: 18px;
         background-color: #c4c4c4;
       }
       /* Divider below top bar */
       #topDivider {
-        width: 100%;
+         max-width: 1200px; /* same as .container's desired width */
+  margin: 0 auto;
         height: 2px;
         background-color: #151515;
       }
@@ -192,10 +194,10 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    
     <div id="topBar"></div>
     <div id="topDivider"></div>
-    
+    <div class="container">
       <!-- MAIN MENU COLUMN -->
       <div class="column main-menu">
         <div id="menuTopBox">
