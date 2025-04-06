@@ -849,7 +849,7 @@
     Discussion
   </div>
 <!-- Container for second social content areas -->
-  <div id="second-social-panel">
+  <div id="discussion-panel">
     <div id="discussion-Home" class="content-section" style="display: none;"></div>
     <div id="discussion-NFL" class="content-section" style="display: none;"></div>
     <div id="discussion-NBA" class="content-section" style="display: none;">
@@ -961,6 +961,20 @@
         });
       });
     </script>
+
+      <script>
+        function showDiscussionSection(section) {
+  // Hide all discussion content sections
+  document.querySelectorAll("#discussion-panel .content-section").forEach(el => {
+    el.style.display = "none";
+  });
+  // Show the discussion section for the given menu item
+  const target = document.getElementById("discussion-" + section);
+  if (target) {
+    target.style.display = "block";
+  }
+}
+      </script>
 
     <!-- News Feeds Script -->
     <script>
@@ -1287,6 +1301,7 @@ document.querySelectorAll("#menuList li[data-section]").forEach(item => {
   item.addEventListener("click", () => {
     const section = item.dataset.section; // should be "NBA" for NBA
     showSecondSocialSection(section);
+    showDiscussionSection(section);
   });
 });
     </script>
