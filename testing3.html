@@ -135,9 +135,17 @@
         margin: 0;
       }
       #menuList li {
-        cursor: pointer;
-        padding: 3px 0;
-      }
+  cursor: pointer;
+  padding: 3px 0;
+  color: #fff; /* non-selected list items have white font */
+}
+
+/* Selected main menu list item */
+#menuList li.selected {
+  font-weight: bold;
+  background-color: #fff; /* white background for selected item */
+  color: #000;           /* black text for selected item */
+}
       .nested {
         margin-left: 15px;
       }
