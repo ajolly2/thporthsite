@@ -1369,7 +1369,9 @@ fetchFeed(
           item.addEventListener("click", e => {
             if (
               item.classList.contains("spacer-line") ||
-              item.classList.contains("soccer-more-toggle")
+              item.classList.contains("soccer-more-toggle")||
+              item.querySelector("strong")
+              
             ) {
               e.stopPropagation();
               return;
