@@ -301,31 +301,36 @@
   display: block;
 }
 
+/* Mobile message is hidden by default */
 .mobile-message {
   display: none;
 }
 
+/* On mobile screens (max-width: 500px) hide the desktop content and show a fixed mobile message */
 @media screen and (max-width: 500px) {
+  /* Hide desktop content entirely */
   .desktop-content {
     display: none;
   }
+  /* Ensure the overall page does not scroll on mobile */
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  /* Show the mobile message as a full‑viewport fixed overlay */
   .mobile-message {
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
+    width: 100vw;
+    height: 100vh;
     align-items: center;
     justify-content: center;
     background-color: #151515;
     color: white;
     font-size: 20px;
     z-index: 9999;
-  }
-  html, body {
-    overflow: hidden;
-    height: 100%;
   }
 }
 
