@@ -339,6 +339,10 @@
     </style>
   </head>
   <body>
+    <div id="mobile-message" style="display:none; background:#111; color:white; padding:30px; text-align:center; font-family:sans-serif; font-size:16px;">
+  THPORTH is best experienced on desktop.<br><br>
+  <strong>Please visit from a computer or switch to desktop mode in your browser.</strong>
+</div>
     <div class="desktop-content">
         <div id="topBar"></div>
     <div id="topDivider"></div>
@@ -1605,6 +1609,15 @@ document.querySelectorAll("#menuList li[data-section]").forEach(item => {
     showDiscussionSection(section);
   });
 });
+      <script>
+  // Detect mobile
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.body.innerHTML = ""; // Clear the rest of the site
+    document.body.appendChild(document.getElementById("mobile-message"));
+    document.getElementById("mobile-message").style.display = "block";
+  }
+</script>
+
     </script>
   </body>
 </html> 
