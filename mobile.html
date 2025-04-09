@@ -106,7 +106,6 @@
         font-family: Arial, sans-serif;
         background-color: #151515;
         color: white;
-        overflow: hidden;
       }
       ul,
       li {
@@ -304,6 +303,7 @@
 .mobile-message {
   display: none;
 }
+
 @media screen and (max-width: 500px) {
   .desktop-content {
     display: none;
@@ -316,11 +316,11 @@
     color: white;
   }
 }
+
     </style>
   </head>
   <body>
     <div class="desktop-content">
-
         <div id="topBar"></div>
     <div id="topDivider"></div>
     <div class="container">
@@ -1153,9 +1153,11 @@
 
     </div>
     </div>
+
       <div class="mobile-message">
-  Please visit thporth.com on desktop
-</div>
+    Please visit thporth.com on desktop
+  </div>
+      
 
     <!-- SINGLE RSS.app script load (only once) -->
     <script src="https://widget.rss.app/v1/feed.js" async></script>
