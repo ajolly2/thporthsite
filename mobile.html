@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CBFZXZSG19"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -1148,7 +1147,6 @@
         </div>
       </div>
     </div>
-    <!-- SINGLE RSS.app script load (only once) -->
     <script src="https://widget.rss.app/v1/feed.js" async></script>
     <script>
       const rssFeeds = {
@@ -1374,7 +1372,6 @@
         });
       });
     </script>
-    <!-- MOBILE MARKUP -->
     <div id="mobileContent">
       <div id="mobileNews" class="mobile-section active">
         <h4>News</h4>
@@ -1419,16 +1416,50 @@
     </div>
     <script>
       if (window.innerWidth <= 500) {
+        var mobileFeedMap = {
+          Home: "https://rss.app/feeds/placeholder_home.xml",
+          NFL: "https://rss.app/feeds/_iiyR3EPoC5QXMnqt.xml",
+          NBA: "https://rss.app/feeds/_ja3fYEA7yigAcmAk.xml",
+          MLB: "https://rss.app/feeds/_6gzCeS4YQ4h2adTs.xml",
+          NHL: "https://rss.app/feeds/_5c3ZcfSrwvdwdG2Z.xml"
+        };
+        function fetchFeedMobile(containerSelector, feedUrl) {
+          fetch(feedUrl)
+            .then(res => res.text())
+            .then(str => {
+              const parser = new DOMParser();
+              const xml = parser.parseFromString(str, "application/xml");
+              const items = Array.from(xml.querySelectorAll("item"));
+              if (items.length > 0) {
+                let html = "<ul>";
+                items.forEach(item => {
+                  const title = item.querySelector("title")?.textContent || "No title";
+                  const link = item.querySelector("link")?.textContent || "#";
+                  html += "<li><a href='" + link + "' target='_blank'>" + title + "</a></li>";
+                });
+                html += "</ul>";
+                document.querySelector(containerSelector).innerHTML = html;
+              } else {
+                document.querySelector(containerSelector).innerHTML = "<p>No items found.</p>";
+              }
+            })
+            .catch(error => {
+              document.querySelector(containerSelector).innerHTML = "<p>Error loading feed.</p>";
+            });
+        }
+        // Initially load the default mobile news feed
+        fetchFeedMobile("#mobileNewsContent", mobileFeedMap["Home"]);
         document.getElementById('btnMainMenu').addEventListener('click', function() {
           var menu = document.getElementById('mobileMainMenu');
           menu.classList.toggle('expanded');
         });
         document.querySelectorAll('#mobileMainMenu li').forEach(function(item) {
-          item.addEventListener('click', function() {
+          item.addEventListener("click", function() {
             var league = item.dataset.section;
-            document.getElementById('mobileNewsContent').innerHTML = '<h5>' + league + ' News</h5><p>Loading news for ' + league + '...</p>';
-            document.getElementById('mobileMainMenu').classList.remove('expanded');
+            var feedUrl = mobileFeedMap[league] || "https://rss.app/feeds/placeholder.xml";
+            fetchFeedMobile("#mobileNewsContent", feedUrl);
             setActiveMobileSection('mobileNews');
+            document.getElementById('mobileMainMenu').classList.remove('expanded');
           });
         });
         document.getElementById('btnNews').addEventListener('click', function() {
