@@ -10,6 +10,7 @@
       padding: 0;
       height: 100%;
       background-color: #151515;
+      font-family: Helvetica, sans-serif;
     }
 
     body {
@@ -17,25 +18,59 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      color: white;
+      text-align: center;
     }
 
     .centered-box {
       padding: 20px;
-      background-color: #151515;
-      border: 0px solid #151515;
+      max-width: 90%;
+    }
+
+    .centered-box img {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      margin-top: 20px;
+      width: 80%;
+      max-width: 300px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #444;
       color: white;
-      font-family: sans-serif;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #666;
     }
   </style>
 </head>
 <body>
   <div class="centered-box">
-    <div style="text-align: center;">
-      <img src="https://github.com/ajolly2/ajolly2.github.io/blob/master/thporth_AllSportsNews_logo-white.png?raw=true" style="width: 72px; height: 72px;" alt="Logo">
-<br>
-    THPORTH is better full-size.<br>  
-Please visit thporth.com on desktop.
-  </div>
+    <img src="https://github.com/ajolly2/ajolly2.github.io/blob/master/thporth_AllSportsNews_logo-white.png?raw=true" alt="Logo" />
+    <div>
+      <p>THPORTH is better full-size.<br>Please visit thporth.com on desktop.</p>
+      <p>Want early access to mobile? Drop your email here:</p>
+      <form action="https://formspree.io/f/xjkwkyby" method="POST">
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <br />
+        <button type="submit">Notify Me</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
